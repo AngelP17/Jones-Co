@@ -11,8 +11,6 @@ import {
   IconBrandInstagram,
   IconLanguage,
   IconMapPin,
-  IconMessages,
-  IconNews,
   IconPhoneCall,
   IconSparkles,
   IconWorldWww,
@@ -23,22 +21,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
 import HeroScene from '@/components/HeroScene';
-
-const credentials = [
-  { icon: IconMapPin, text: 'Arkansas-based support with statewide service' },
-  {
-    icon: IconNews,
-    text: 'Editorial, agency, and strategic content experience for local brands',
-  },
-  {
-    icon: IconMessages,
-    text: 'Clear communication, quick turnarounds, and practical recommendations',
-  },
-  {
-    icon: IconLanguage,
-    text: 'Bilingual content support for businesses serving diverse communities',
-  },
-];
 
 const services = [
   {
@@ -122,7 +104,7 @@ const Home = () => {
                 Arkansas-based studio • Serving growth-focused brands statewide
               </p>
 
-              <div className="mb-8 flex flex-wrap gap-4">
+              <div className="mb-6 flex flex-wrap gap-4">
                 <Button
                   onClick={() => handleNavClick('/contact')}
                   size="lg"
@@ -140,17 +122,9 @@ const Home = () => {
                 </Button>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                {credentials.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-3 rounded-xl border border-white/12 bg-white/6 p-3 backdrop-blur"
-                  >
-                    <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#9ad7cd]" />
-                    <p className="text-sm leading-relaxed text-white/85">{item.text}</p>
-                  </div>
-                ))}
-              </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
+                Trusted by Arkansas brands • Fast communication • Bilingual support
+              </p>
             </div>
 
             <HeroScene />
