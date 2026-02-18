@@ -61,7 +61,7 @@ const values = [
   {
     title: 'Quality',
     description:
-      'Big-agency expertise with small-town personal service.',
+      'Craft-driven strategy with meticulous execution.',
   },
   {
     title: 'Community',
@@ -74,20 +74,21 @@ const About = () => {
   const { navigate } = useRouter();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#f7f2ec]">
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-foreground pt-32 pb-16 text-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-[#10131c] pb-16 pt-32 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_22%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_85%_78%,rgba(137,208,197,0.14),transparent_45%)]" />
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">
               About <span className="text-primary">Addie Jones</span>
             </h1>
-            <p className="text-lg text-background/80">
+            <p className="text-lg text-white/80">
               Marketing professional, Arkansas native, and passionate advocate
-              for local businesses. Bringing big-agency experience to
-              small-town prices.
+              for local businesses. Bringing strategic creative thinking to
+              high-trust local partnerships.
             </p>
           </div>
         </div>
@@ -98,7 +99,7 @@ const About = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat) => (
-              <Card key={stat.label} className="bg-white shadow-lg">
+              <Card key={stat.label} className="bg-white">
                 <CardContent className="p-6 text-center">
                   <stat.icon className="mx-auto h-8 w-8 text-primary mb-3" />
                   <p className="text-3xl font-bold text-foreground mb-1">
@@ -150,7 +151,7 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-accent rounded-2xl p-8">
+            <div className="rounded-2xl border border-[#dfcfbd] bg-white p-8 shadow-[0_16px_38px_rgba(33,27,18,0.08)]">
               <h3 className="font-display text-xl font-bold mb-6">
                 Credentials & Experience
               </h3>
@@ -177,7 +178,7 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="bg-muted py-16">
+      <section className="bg-[#f2eae0] py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl font-bold text-center mb-4">
             Our Values
@@ -273,12 +274,12 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="bg-foreground py-16 text-background">
+      <section className="bg-[#10131c] py-16 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
             Let's Work Together
           </h2>
-          <p className="text-background/70 max-w-xl mx-auto mb-6">
+          <p className="mx-auto mb-6 max-w-xl text-white/75">
             Ready to take your business to the next level? I'd love to hear
             about your goals and how I can help.
           </p>
@@ -287,9 +288,9 @@ const About = () => {
               navigate('/contact');
               window.scrollTo(0, 0);
             }}
-            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
           >
-            Get in Touch
+            Book a Consultation
           </button>
         </div>
       </section>

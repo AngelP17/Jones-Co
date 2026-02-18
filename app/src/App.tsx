@@ -37,12 +37,19 @@ function App() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
-          Loading...
+        <div className="flex min-h-screen items-center justify-center bg-[#f7f2ec] text-foreground">
+          <div className="rounded-full border border-[#f2ab62]/30 bg-white px-5 py-2 text-sm font-medium text-foreground shadow-sm">
+            Loading page...
+          </div>
         </div>
       }
     >
-      {renderPage()}
+      <main
+        key={currentPath}
+        className="duration-300 animate-in fade-in-50 slide-in-from-bottom-1"
+      >
+        {renderPage()}
+      </main>
     </Suspense>
   );
 }

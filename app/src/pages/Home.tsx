@@ -95,46 +95,46 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#f7f2ec]">
       <Navbar />
 
       <section className="relative overflow-hidden bg-[#10131c] pb-24 pt-28 text-white">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_85%_75%,rgba(137,208,197,0.18),transparent_45%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(242,171,98,0.2),transparent_45%),radial-gradient(circle_at_82%_75%,rgba(137,208,197,0.16),transparent_45%)]" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur">
+              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white/90 backdrop-blur">
                 <IconSparkles className="h-4 w-4 text-[#f2ab62]" />
-                Arkansas Marketing Studio
+                Jones & Co. Media
               </span>
               <h1 className="mb-5 text-4xl font-semibold leading-[1.08] sm:text-5xl md:text-6xl">
                 <span className="font-hero block text-[#f2ab62]">
-                  Big-Agency Quality.
+                  Distinctive brand presence.
                 </span>
-                <span className="block">Small-Town Service.</span>
+                <span className="block">Built with editorial precision.</span>
               </h1>
               <p className="mb-3 max-w-2xl text-lg text-white/85">
-                I help Arkansas businesses look professional online through
-                websites, social media, marketing materials, and content that
-                connects with your customers.
+                Jones & Co. Media delivers strategic websites, social systems,
+                and campaign-ready content designed to look elevated, read
+                clearly, and convert consistently.
               </p>
               <p className="mb-8 text-sm font-semibold tracking-wide text-[#9ad7cd]">
-                Your Arkansas neighbor • Serving businesses statewide
+                Arkansas-based studio • Serving growth-focused brands statewide
               </p>
 
               <div className="mb-8 flex flex-wrap gap-4">
                 <Button
                   onClick={() => handleNavClick('/contact')}
                   size="lg"
-                  className="bg-[#f2ab62] text-[#10131c] hover:bg-[#f8ba79]"
+                  className="bg-[#f2ab62] text-[#10131c] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f8ba79]"
                 >
-                  Get Started <IconArrowRight className="ml-2 h-4 w-4" />
+                  Book a Consultation <IconArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button
                   onClick={() => handleNavClick('/services')}
                   size="lg"
                   variant="outline"
-                  className="border-white/30 bg-white/5 text-white hover:bg-white/12"
+                  className="border-white/25 bg-white/5 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/12"
                 >
                   View Services
                 </Button>
@@ -158,12 +158,15 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="bg-[#f7f2ec] py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-5">
             <div className="lg:col-span-3">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                Positioning
+              </p>
               <h2 className="mb-6 font-display text-3xl font-bold text-foreground md:text-4xl">
-                Local context, professional execution.
+                Local context, premium execution.
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
@@ -182,7 +185,7 @@ const Home = () => {
               </div>
             </div>
             <div className="lg:col-span-2">
-              <Card className="border-primary/20 bg-accent">
+              <Card className="rounded-2xl border border-[#f2ab62]/30 bg-white shadow-[0_18px_45px_rgba(33,27,18,0.08)]">
                 <CardContent className="p-6">
                   <h3 className="mb-4 font-display text-lg font-semibold text-foreground">
                     Quick Snapshot
@@ -202,7 +205,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-muted py-20">
+      <section className="bg-[#f7f2ec] py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="mb-2 text-center font-display text-3xl font-bold text-foreground md:text-4xl">
             What We Do
@@ -214,10 +217,10 @@ const Home = () => {
             {services.map((service) => (
               <Card
                 key={service.title}
-                className="group bg-white transition-shadow hover:shadow-lg"
+                className="group rounded-2xl border border-[#f2ab62]/20 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(33,27,18,0.08)]"
               >
                 <CardContent className="flex h-full flex-col items-start p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#f2ab62]/15">
                     <service.icon className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
@@ -229,7 +232,7 @@ const Home = () => {
                   <Button
                     onClick={() => handleNavClick(service.path)}
                     variant="link"
-                    className="px-0 text-primary"
+                    className="px-0 text-primary hover:text-[#b8673e]"
                   >
                     Learn More <IconArrowRight className="ml-1 h-4 w-4" />
                   </Button>
@@ -240,7 +243,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="border-y border-primary/20 bg-accent py-16">
+      <section className="border-y border-[#f2ab62]/20 bg-[#f7f2ec] py-16">
         <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
           <IconLanguage className="mx-auto mb-4 h-10 w-10 text-primary" />
           <h2 className="mb-4 font-display text-3xl font-bold text-foreground">
@@ -253,22 +256,22 @@ const Home = () => {
           </p>
           <Button
             onClick={() => handleNavClick('/contact')}
-            className="bg-primary hover:bg-primary/90"
+            className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
           >
             Contáctenos
           </Button>
         </div>
       </section>
 
-      <section className="bg-foreground py-20 text-background">
+      <section className="bg-[#10131c] py-20 text-white">
         <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 font-display text-3xl font-bold md:text-4xl">
             Ready to grow your business?
           </h2>
-          <p className="mb-8 text-background/70">
+          <p className="mb-8 text-white/70">
             Let&apos;s map out what you need and build a plan that fits your goals.
           </p>
-          <div className="mb-8 flex flex-wrap items-center justify-center gap-6 text-sm text-background/80">
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-6 text-sm text-white/80">
             <a
               href="tel:8705770389"
               className="flex items-center gap-2 transition-colors hover:text-primary"
@@ -289,7 +292,7 @@ const Home = () => {
             <Button
               onClick={() => handleNavClick('/contact')}
               size="lg"
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
             >
               Schedule a Call
             </Button>
@@ -297,7 +300,7 @@ const Home = () => {
               onClick={() => handleNavClick('/bundles')}
               variant="outline"
               size="lg"
-              className="border-background/30 text-background hover:bg-background/10"
+              className="border-white/25 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
             >
               View Pricing
             </Button>
@@ -305,12 +308,16 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="bg-[#f7f2ec] py-20">
         <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-center font-display text-3xl font-bold text-foreground">
             Frequently Asked Questions
           </h2>
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full rounded-2xl border border-[#f2ab62]/20 bg-white px-6"
+          >
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`faq-${index}`}>
                 <AccordionTrigger className="text-left font-display text-base font-semibold">

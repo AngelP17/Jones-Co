@@ -274,22 +274,24 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#f7f2ec]">
       <Navbar />
 
-      <section className="bg-foreground pb-16 pt-32 text-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-[#10131c] pb-16 pt-32 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_24%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_88%_76%,rgba(137,208,197,0.14),transparent_45%)]" />
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/85">
-              <IconSparkles className="h-4 w-4 text-primary" />
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/85">
+              <IconSparkles className="h-4 w-4 text-[#f2ab62]" />
               Services & Pricing
             </p>
             <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">
-              Our <span className="text-primary">Services</span>
+              Strategic services with
+              <span className="font-hero block text-[#f2ab62]"> editorial polish.</span>
             </h1>
-            <p className="text-lg text-background/80">
-              Clear packages, straightforward pricing, and practical support for
-              Arkansas businesses.
+            <p className="text-lg text-white/80">
+              Straightforward pricing, conversion-focused execution, and premium
+              creative direction for Arkansas businesses.
             </p>
           </div>
         </div>
@@ -302,12 +304,12 @@ const Services = () => {
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="mb-8 flex h-auto max-w-full justify-start gap-2 overflow-x-auto bg-transparent p-0 pb-2">
+            <TabsList className="mb-8 flex h-auto max-w-full justify-start gap-2 overflow-x-auto rounded-full border border-[#dfcfbd] bg-white p-1">
               {serviceCategories.map((category) => (
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className="shrink-0 rounded-full border border-border px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  className="shrink-0 rounded-full border border-transparent px-4 py-2 text-foreground transition-all duration-300 data-[state=active]:border-[#f2ab62]/30 data-[state=active]:bg-[#10131c] data-[state=active]:text-white"
                 >
                   <category.icon className="mr-2 h-4 w-4" />
                   {category.name}
@@ -316,9 +318,13 @@ const Services = () => {
             </TabsList>
 
             {serviceCategories.map((category) => (
-              <TabsContent key={category.id} value={category.id} className="mt-0">
+              <TabsContent
+                key={category.id}
+                value={category.id}
+                className="mt-0 data-[state=active]:animate-in data-[state=active]:fade-in-50 data-[state=active]:slide-in-from-bottom-1"
+              >
                 <div className="mb-8">
-                  <h2 className="mb-2 font-display text-2xl font-bold">
+                  <h2 className="mb-2 font-display text-3xl font-bold">
                     {category.name}
                   </h2>
                   <p className="text-muted-foreground">{category.description}</p>
@@ -330,8 +336,8 @@ const Services = () => {
                       key={servicePackage.name}
                       className={`relative ${
                         servicePackage.popular
-                          ? 'border-primary shadow-lg'
-                          : 'border-border'
+                          ? 'border-primary/45 shadow-[0_18px_42px_rgba(33,27,18,0.12)]'
+                          : 'border-[#e8dccf]'
                       }`}
                     >
                       {servicePackage.popular ? (
@@ -358,7 +364,7 @@ const Services = () => {
                           {servicePackage.features.map((feature, index) => (
                             <li
                               key={index}
-                              className="flex items-start gap-2 text-sm"
+                              className="flex items-start gap-2 text-sm text-foreground"
                             >
                               <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                               <span>{feature}</span>
@@ -390,21 +396,25 @@ const Services = () => {
       </section>
 
       <section className="py-16">
-        <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-4 font-display text-2xl font-bold">
-            Not sure what you need?
-          </h2>
-          <p className="mx-auto mb-6 max-w-xl text-muted-foreground">
-            Let&apos;s talk about your goals and put together the right mix of
-            services for your business.
-          </p>
-          <Button
-            onClick={handleContact}
-            size="lg"
-            className="bg-primary hover:bg-primary/90"
-          >
-            Let&apos;s Talk →
-          </Button>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <Card className="border-[#f2ab62]/25 bg-[#10131c] text-white">
+            <CardContent className="p-8 text-center md:p-12">
+              <h2 className="mb-4 font-display text-2xl font-bold md:text-3xl">
+                Not sure what you need?
+              </h2>
+              <p className="mx-auto mb-6 max-w-xl text-white/75">
+                Let&apos;s map your goals and assemble the exact service mix for
+                your next growth stage.
+              </p>
+              <Button
+                onClick={handleContact}
+                size="lg"
+                className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
+              >
+                Book a Strategy Call
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
 

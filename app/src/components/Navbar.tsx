@@ -38,8 +38,8 @@ const Navbar = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm'
-          : 'bg-white'
+          ? 'border-b border-[#d9c5ae]/70 bg-[#f7f2ec]/95 shadow-sm backdrop-blur-md'
+          : 'border-b border-[#e9ddd0] bg-[#f7f2ec]/90 backdrop-blur'
       } pt-[env(safe-area-inset-top)]`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,15 +59,15 @@ const Navbar = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden items-center gap-2 rounded-full border border-[#dfcfbd] bg-white/85 p-1 lg:flex">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.path)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   isActive(link.path)
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
+                    ? 'bg-[#10131c] text-white shadow-sm'
+                    : 'text-muted-foreground hover:bg-[#f4ebe0] hover:text-foreground'
                 }`}
               >
                 {link.name}
@@ -79,9 +79,9 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <Button 
               onClick={() => handleNavClick('/contact')}
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
             >
-              Get Started
+              Book a Call
             </Button>
           </div>
 
@@ -93,7 +93,7 @@ const Navbar = () => {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[88vw] max-w-[360px]">
+            <SheetContent side="right" className="w-[88vw] max-w-[360px] bg-[#f7f2ec]">
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between py-4 border-b">
                   <button
@@ -121,9 +121,9 @@ const Navbar = () => {
                 <div className="mt-auto pb-6">
                   <Button
                     onClick={() => handleNavClick('/contact')}
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="w-full bg-primary transition-all duration-300 hover:bg-primary/90"
                   >
-                    Get Started
+                    Book a Call
                   </Button>
                 </div>
               </div>

@@ -15,6 +15,9 @@ export const useRouter = () => {
   }, []);
 
   const navigate = useCallback((path: string) => {
+    if ((window.location.hash.slice(1) || '/') === path) {
+      return;
+    }
     window.location.hash = path;
   }, []);
 

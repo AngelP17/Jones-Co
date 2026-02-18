@@ -70,17 +70,18 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#f7f2ec]">
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-foreground pt-32 pb-16 text-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-[#10131c] pb-16 pt-32 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_24%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_88%_76%,rgba(137,208,197,0.14),transparent_45%)]" />
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">
               Get in <span className="text-primary">Touch</span>
             </h1>
-            <p className="text-lg text-background/80">
+            <p className="text-lg text-white/80">
               Ready to grow your business? Let's talk about what you need. Free
               consultation, no pressure.
             </p>
@@ -93,7 +94,7 @@ const Contact = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {contactInfo.map((item) => (
-              <Card key={item.title} className="bg-white shadow-lg">
+              <Card key={item.title} className="bg-white">
                 <CardContent className="p-6">
                   <item.icon className="h-8 w-8 text-primary mb-3" />
                   <p className="text-sm text-muted-foreground mb-1">
@@ -121,15 +122,16 @@ const Contact = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Form */}
-            <div>
-              <h2 className="font-display text-2xl font-bold mb-6">
-                Send a Message
-              </h2>
-              <form
-                action={FORMSPREE_ENDPOINT}
-                method="POST"
-                className="space-y-6"
-              >
+            <Card className="border-[#e8dccf] bg-white">
+              <CardContent className="p-8">
+                <h2 className="font-display text-2xl font-bold mb-6">
+                  Send a Message
+                </h2>
+                <form
+                  action={FORMSPREE_ENDPOINT}
+                  method="POST"
+                  className="space-y-6"
+                >
                 <input
                   type="hidden"
                   name="_subject"
@@ -212,23 +214,24 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-primary hover:bg-primary/90"
-                >
-                  <Send className="h-4 w-4 mr-2" />
-                  Send Message
-                </Button>
-              </form>
-            </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
+                  >
+                    <Send className="h-4 w-4 mr-2" />
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
 
             {/* Info */}
-            <div>
+            <div className="rounded-2xl border border-[#dfcfbd] bg-white p-8 shadow-[0_16px_38px_rgba(33,27,18,0.08)]">
               <h2 className="font-display text-2xl font-bold mb-6">
                 Schedule a Call
               </h2>
-              <Card className="bg-accent mb-6">
+              <Card className="mb-6 border-[#f2ab62]/25 bg-[#f7f2ec]">
                 <CardContent className="p-6">
                   <p className="text-muted-foreground mb-4">
                     Prefer to talk? Schedule a free 30-minute consultation to
@@ -236,7 +239,7 @@ const Contact = () => {
                   </p>
                   <Button
                     asChild
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="w-full bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
                   >
                     <a href="tel:8705770389">Call + 870 577 0389</a>
                   </Button>
@@ -283,7 +286,7 @@ const Contact = () => {
                 </li>
               </ul>
 
-              <div className="mt-8 p-6 bg-muted rounded-lg">
+              <div className="mt-8 rounded-xl border border-[#dfcfbd] bg-[#f7f2ec] p-6">
                 <p className="text-sm text-muted-foreground italic">
                   "Addie was incredibly responsive and understood exactly what I
                   needed. She made the whole process easy and stress-free."
@@ -298,13 +301,13 @@ const Contact = () => {
       </section>
 
       {/* Locations */}
-      <section className="bg-muted py-16">
+      <section className="bg-[#f2eae0] py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-2xl font-bold text-center mb-8">
             Serving Arkansas
           </h2>
           <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
-            <Card>
+            <Card className="bg-white">
               <CardContent className="p-6">
                 <MapPin className="h-8 w-8 text-primary mb-3" />
                 <h3 className="font-display text-lg font-bold mb-1">
@@ -315,7 +318,7 @@ const Contact = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="bg-white">
               <CardContent className="p-6">
                 <MapPin className="h-8 w-8 text-primary mb-3" />
                 <h3 className="font-display text-lg font-bold mb-1">

@@ -26,7 +26,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="border-t border-[#f2ab62]/15 bg-[#10131c] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid gap-8 lg:gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -39,25 +39,26 @@ const Footer = () => {
                 Jones<span className="text-primary">&</span>Co. Media
               </span>
             </button>
-            <p className="text-background/70 text-sm mb-6 max-w-xs">
-              Big-Agency Quality. Small-Town Service. Professional marketing support for Arkansas businesses.
+            <p className="text-sm mb-6 max-w-xs text-white/70">
+              Premium digital identity, strategic content, and measurable
+              marketing execution for Arkansas businesses.
             </p>
             <div className="space-y-3 text-sm">
               <a
                 href="tel:8705770389"
-                className="flex items-center gap-2 text-background/70 hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-white/70 transition-colors hover:text-primary"
               >
                 <Phone className="h-4 w-4" />
                 + 870 577 0389
               </a>
               <a
                 href="mailto:jonescopr@gmail.com"
-                className="flex items-center gap-2 text-background/70 hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-white/70 transition-colors hover:text-primary"
               >
                 <Mail className="h-4 w-4" />
                 jonescopr@gmail.com
               </a>
-              <span className="flex items-center gap-2 text-background/70">
+              <span className="flex items-center gap-2 text-white/70">
                 <MapPin className="h-4 w-4" />
                 Harrison & Fayetteville, AR
               </span>
@@ -72,7 +73,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     onClick={() => handleNavClick(link.path)}
-                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                    className="text-sm text-white/70 transition-colors hover:text-primary"
                   >
                     {link.name}
                   </button>
@@ -89,7 +90,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     onClick={() => handleNavClick(link.path)}
-                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                    className="text-sm text-white/70 transition-colors hover:text-primary"
                   >
                     {link.name}
                   </button>
@@ -101,26 +102,27 @@ const Footer = () => {
           {/* CTA */}
           <div>
             <h3 className="font-display text-lg font-semibold mb-4">Ready to Grow?</h3>
-            <p className="text-background/70 text-sm mb-4">
-              Let's discuss how we can help your business thrive.
+            <p className="mb-4 text-sm text-white/70">
+              Let&apos;s build a sharper digital presence for your next stage of
+              growth.
             </p>
             <button
               onClick={() => handleNavClick('/contact')}
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
             >
-              Get Started
+              Book a Consultation
             </button>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-background/10">
+        <div className="mt-12 border-t border-white/10 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-background/50 text-sm">
+            <p className="text-sm text-white/50">
               {currentYear} Jones & Co. Media. All rights reserved.
             </p>
-            <p className="text-background/50 text-sm">
-              Serving Arkansas businesses with pride.
+            <p className="text-sm text-white/50">
+              Strategic design, clear messaging, and conversion-first execution.
             </p>
           </div>
         </div>

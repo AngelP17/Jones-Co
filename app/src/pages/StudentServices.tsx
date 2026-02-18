@@ -199,34 +199,35 @@ const StudentServices = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#f7f2ec]">
       <Navbar />
 
-      <section className="bg-foreground pb-16 pt-32 text-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-[#10131c] pb-16 pt-32 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_24%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_88%_76%,rgba(137,208,197,0.14),transparent_45%)]" />
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/85">
-              <IconSparkles className="h-4 w-4 text-primary" />
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/85">
+              <IconSparkles className="h-4 w-4 text-[#f2ab62]" />
               Student Services
             </p>
             <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">
               Resume & Application Support for Students
             </h1>
-            <p className="mb-3 text-lg text-background/85">
+            <p className="mb-3 text-lg text-white/85">
               Get into your dream school or land that internship with
               professional editing and guidance from someone who just went
               through it.
             </p>
-            <p className="mb-8 text-sm font-semibold tracking-wide text-primary">
+            <p className="mb-8 text-sm font-semibold tracking-wide text-[#9ad7cd]">
               Based in Fayetteville • University of Arkansas student • I know
               what works
             </p>
             <Button
               onClick={handleGetStarted}
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              className="bg-primary text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
               size="lg"
             >
-              Get Started <IconArrowRight className="ml-2 h-4 w-4" />
+              Book a Consultation <IconArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -255,7 +256,9 @@ const StudentServices = () => {
                     <Card
                       key={offer.name}
                       className={`relative ${
-                        offer.highlight ? 'border-primary shadow-lg' : 'border-border'
+                        offer.highlight
+                          ? 'border-primary/45 shadow-[0_18px_42px_rgba(33,27,18,0.12)]'
+                          : 'border-[#e8dccf]'
                       }`}
                     >
                       {offer.highlight ? (
@@ -309,7 +312,7 @@ const StudentServices = () => {
         </div>
       </section>
 
-      <section className="bg-muted py-16">
+      <section className="bg-[#f2eae0] py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 font-display text-3xl font-bold text-foreground">
             Popular Bundles
@@ -317,7 +320,7 @@ const StudentServices = () => {
 
           <div className="grid gap-6 md:grid-cols-2">
             {bundles.map((bundle) => (
-              <Card key={bundle.name} className="border-primary/30">
+              <Card key={bundle.name} className="border-primary/30 bg-white">
                 <CardHeader>
                   <CardTitle className="font-display text-xl">{bundle.name}</CardTitle>
                   <p className="text-2xl font-bold text-primary">{bundle.price}</p>
@@ -348,7 +351,7 @@ const StudentServices = () => {
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
             {reasons.map((reason) => (
-              <Card key={reason.title} className="bg-accent">
+              <Card key={reason.title} className="border-[#e8dccf] bg-white">
                 <CardContent className="p-6">
                   <h3 className="mb-2 font-display text-xl font-semibold text-foreground">
                     {reason.title}
@@ -363,12 +366,12 @@ const StudentServices = () => {
         </div>
       </section>
 
-      <section className="bg-foreground py-16 text-background">
+      <section className="bg-[#10131c] py-16 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 font-display text-3xl font-bold">How It Works</h2>
           <div className="grid gap-5 md:grid-cols-2">
             {processSteps.map((step, index) => (
-              <Card key={step.title} className="border-white/15 bg-white/5 text-white">
+              <Card key={step.title} className="border-white/15 bg-white/5 text-white shadow-none">
                 <CardContent className="p-6">
                   <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-primary">
                     Step {index + 1}
@@ -397,15 +400,15 @@ const StudentServices = () => {
             <Button
               onClick={handleGetStarted}
               size="lg"
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
             >
-              Get Started →
+              Book a Consultation
             </Button>
             <Button
               onClick={handleGetStarted}
               size="lg"
               variant="outline"
-              className="border-primary/30"
+              className="border-primary/30 transition-all duration-300 hover:-translate-y-0.5"
             >
               Contact Me
             </Button>

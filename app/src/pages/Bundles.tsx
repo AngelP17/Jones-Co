@@ -23,7 +23,7 @@ const bundles = [
       'Business card design',
       'Monthly maintenance included',
     ],
-    color: 'border-secondary',
+    color: 'border-[#e8dccf]',
   },
   {
     name: 'Digital Presence Package',
@@ -44,7 +44,7 @@ const bundles = [
       'Brand style guide',
     ],
     popular: true,
-    color: 'border-primary',
+    color: 'border-[#e8dccf]',
   },
   {
     name: 'Full-Service Growth',
@@ -65,7 +65,7 @@ const bundles = [
       'Priority support',
       'All design materials included',
     ],
-    color: 'border-foreground',
+    color: 'border-[#e8dccf]',
   },
 ];
 
@@ -78,17 +78,19 @@ const Bundles = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#f7f2ec]">
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-foreground pt-32 pb-16 text-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-[#10131c] pb-16 pt-32 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_24%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_88%_76%,rgba(137,208,197,0.14),transparent_45%)]" />
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">
-              Service <span className="text-primary">Bundles</span>
+              Service Bundles for
+              <span className="font-hero block text-[#f2ab62]"> focused growth.</span>
             </h1>
-            <p className="text-lg text-background/80">
+            <p className="text-lg text-white/80">
               Save money and get everything you need with our curated service
               packages. Designed for Arkansas businesses at every stage.
             </p>
@@ -105,7 +107,7 @@ const Bundles = () => {
                 key={bundle.name}
                 className={`relative flex flex-col ${
                   bundle.popular
-                    ? 'border-primary shadow-xl scale-105'
+                    ? 'border-primary/45 shadow-[0_20px_50px_rgba(33,27,18,0.15)] lg:scale-[1.03]'
                     : bundle.color
                 }`}
               >
@@ -167,11 +169,11 @@ const Bundles = () => {
                     onClick={() => handleNavClick('/contact')}
                     className={`w-full ${
                       bundle.popular
-                        ? 'bg-primary hover:bg-primary/90'
-                        : 'bg-foreground hover:bg-foreground/90'
+                        ? 'bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90'
+                        : 'bg-[#10131c] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#10131c]/90'
                     }`}
                   >
-                    Get Started
+                    Book a Consultation
                   </Button>
                 </CardContent>
               </Card>
@@ -181,14 +183,14 @@ const Bundles = () => {
       </section>
 
       {/* Comparison */}
-      <section className="bg-muted py-16">
+      <section className="bg-[#f2eae0] py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-2xl font-bold text-center mb-8">
             Bundle Comparison
           </h2>
 
           <div className="overflow-x-auto">
-            <table className="w-full bg-white rounded-lg shadow-sm">
+            <table className="w-full overflow-hidden rounded-2xl border border-[#dfcfbd] bg-white shadow-[0_14px_34px_rgba(33,27,18,0.08)]">
               <thead>
                 <tr className="border-b">
                   <th className="text-left p-4 font-display">Feature</th>
@@ -269,12 +271,12 @@ const Bundles = () => {
       {/* Custom Package CTA */}
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="bg-foreground text-background">
+          <Card className="border-[#f2ab62]/20 bg-[#10131c] text-white">
             <CardContent className="p-8 md:p-12 text-center">
               <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
                 Need a Custom Package?
               </h2>
-              <p className="text-background/70 max-w-xl mx-auto mb-6">
+              <p className="mx-auto mb-6 max-w-xl text-white/75">
                 Every business is unique. Let's create a custom solution that
                 fits your specific needs and budget.
               </p>
@@ -282,7 +284,7 @@ const Bundles = () => {
                 <Button
                   onClick={() => handleNavClick('/contact')}
                   size="lg"
-                  className="bg-primary hover:bg-primary/90"
+                  className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
                 >
                   Request Custom Quote
                 </Button>
@@ -290,7 +292,7 @@ const Bundles = () => {
                   onClick={() => handleNavClick('/services')}
                   variant="outline"
                   size="lg"
-                  className="border-background/30 text-background hover:bg-background/10"
+                  className="border-white/25 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
                 >
                   View Individual Services
                 </Button>
