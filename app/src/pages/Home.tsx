@@ -12,7 +12,6 @@ import {
   IconLanguage,
   IconMapPin,
   IconPhoneCall,
-  IconSparkles,
   IconWorldWww,
   IconWriting,
   IconMail,
@@ -21,6 +20,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
 import HeroScene from '@/components/HeroScene';
+import ProcessRail from '@/components/home/ProcessRail';
 
 const services = [
   {
@@ -46,6 +46,21 @@ const services = [
     desc: 'Bilingual content and culturally grounded messaging for Arkansas audiences.',
     icon: IconLanguage,
     path: '/services',
+  },
+];
+
+const snapshotPoints = [
+  {
+    title: 'Positioning Clarity',
+    detail: 'Messaging frameworks that help customers understand value in seconds.',
+  },
+  {
+    title: 'Editorial Consistency',
+    detail: 'Unified visual and written standards across web, social, and campaigns.',
+  },
+  {
+    title: 'Conversion Focus',
+    detail: 'Clear CTA architecture and content flow designed to drive action.',
   },
 ];
 
@@ -85,8 +100,7 @@ const Home = () => {
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white/90 backdrop-blur">
-                <IconSparkles className="h-4 w-4 text-[#f2ab62]" />
+              <span className="mb-5 inline-block rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white/90 backdrop-blur">
                 Jones & Co. Media
               </span>
               <h1 className="mb-5 text-4xl font-semibold leading-[1.08] sm:text-5xl md:text-6xl">
@@ -108,7 +122,7 @@ const Home = () => {
                 <Button
                   onClick={() => handleNavClick('/contact')}
                   size="lg"
-                  className="bg-[#f2ab62] text-[#10131c] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f8ba79]"
+                  className="bg-[#f2ab62] text-[#10131c] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f8ba79] motion-reduce:hover:translate-y-0"
                 >
                   Book a Consultation <IconArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -116,7 +130,7 @@ const Home = () => {
                   onClick={() => handleNavClick('/services')}
                   size="lg"
                   variant="outline"
-                  className="border-white/25 bg-white/5 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/12"
+                  className="border-white/25 bg-white/5 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/12 motion-reduce:hover:translate-y-0"
                 >
                   View Services
                 </Button>
@@ -165,10 +179,10 @@ const Home = () => {
                     Quick Snapshot
                   </h3>
                   <div className="space-y-3">
-                    {services.map((item) => (
-                      <div key={item.title} className="flex items-start gap-3">
-                        <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                        <span className="text-sm text-foreground">{item.desc}</span>
+                    {snapshotPoints.map((item) => (
+                      <div key={item.title} className="rounded-xl border border-[#f0e4d8] bg-[#fdfaf6] p-3">
+                        <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                        <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
                       </div>
                     ))}
                   </div>
@@ -191,7 +205,7 @@ const Home = () => {
             {services.map((service) => (
               <Card
                 key={service.title}
-                className="group rounded-2xl border border-[#f2ab62]/20 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(33,27,18,0.08)]"
+                className="group rounded-2xl border border-[#f2ab62]/20 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(33,27,18,0.08)] motion-reduce:hover:translate-y-0"
               >
                 <CardContent className="flex h-full flex-col items-start p-6">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#f2ab62]/15">
@@ -217,6 +231,8 @@ const Home = () => {
         </div>
       </section>
 
+      <ProcessRail />
+
       <section className="border-y border-[#f2ab62]/20 bg-[#f7f2ec] py-16">
         <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
           <IconLanguage className="mx-auto mb-4 h-10 w-10 text-primary" />
@@ -230,7 +246,7 @@ const Home = () => {
           </p>
           <Button
             onClick={() => handleNavClick('/contact')}
-            className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
+            className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 motion-reduce:hover:translate-y-0"
           >
             Contáctenos
           </Button>
@@ -266,7 +282,7 @@ const Home = () => {
             <Button
               onClick={() => handleNavClick('/contact')}
               size="lg"
-              className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
+              className="bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 motion-reduce:hover:translate-y-0"
             >
               Schedule a Call
             </Button>
@@ -274,7 +290,7 @@ const Home = () => {
               onClick={() => handleNavClick('/bundles')}
               variant="outline"
               size="lg"
-              className="border-white/25 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
+              className="border-white/25 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 motion-reduce:hover:translate-y-0"
             >
               View Pricing
             </Button>

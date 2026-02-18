@@ -8,7 +8,6 @@ import {
   IconChecklist,
   IconFileText,
   IconSchool,
-  IconSparkles,
   IconWriting,
 } from '@tabler/icons-react';
 import Navbar from '@/components/Navbar';
@@ -206,8 +205,7 @@ const StudentServices = () => {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_24%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_88%_76%,rgba(137,208,197,0.14),transparent_45%)]" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/85">
-              <IconSparkles className="h-4 w-4 text-[#f2ab62]" />
+            <p className="mb-3 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/85">
               Student Services
             </p>
             <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">
