@@ -1,11 +1,13 @@
+import { lazy, Suspense } from 'react';
 import useRouter from './hooks/useRouter';
-import Home from './pages/Home';
-import Services from './pages/Services';
-import Bundles from './pages/Bundles';
-import StudentServices from './pages/StudentServices';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import ThankYou from './pages/ThankYou';
+
+const Home = lazy(() => import('./pages/Home'));
+const Services = lazy(() => import('./pages/Services'));
+const Bundles = lazy(() => import('./pages/Bundles'));
+const StudentServices = lazy(() => import('./pages/StudentServices'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const ThankYou = lazy(() => import('./pages/ThankYou'));
 
 function App() {
   const { currentPath } = useRouter();
@@ -32,7 +34,17 @@ function App() {
     }
   };
 
-  return renderPage();
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
+          Loading...
+        </div>
+      }
+    >
+      {renderPage()}
+    </Suspense>
+  );
 }
 
 export default App;
