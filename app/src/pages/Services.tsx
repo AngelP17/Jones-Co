@@ -302,12 +302,12 @@ const Services = () => {
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="mb-8 flex h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
+            <TabsList className="mb-8 flex h-auto max-w-full justify-start gap-2 overflow-x-auto bg-transparent p-0 pb-2">
               {serviceCategories.map((category) => (
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className="rounded-full border border-border px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  className="shrink-0 rounded-full border border-border px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
                 >
                   <category.icon className="mr-2 h-4 w-4" />
                   {category.name}

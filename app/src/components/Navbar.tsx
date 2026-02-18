@@ -40,7 +40,7 @@ const Navbar = () => {
         isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-sm'
           : 'bg-white'
-      }`}
+      } pt-[env(safe-area-inset-top)]`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
@@ -88,12 +88,12 @@ const Navbar = () => {
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="h-11 w-11">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[350px]">
+            <SheetContent side="right" className="w-[88vw] max-w-[360px]">
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between py-4 border-b">
                   <button
