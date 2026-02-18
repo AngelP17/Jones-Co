@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "mission": "Jones & Co website redesign and pricing/content updates",
-  "goal": "Implement wow-factor home hero with Three.js + Instrument Serif; update home copy; revise services pricing and marketing materials cards; rewrite student services page copy and packages",
+  "mission": "Fix Cloudflare deploy and workers.dev accessibility issue",
+  "goal": "Redesign Jones & Co homepage/navigation to premium style, remove 3D and unwanted copy, add smooth page/tab transitions",
   "parallelism": 3,
-  "created_at": "2026-02-18T04:28:54Z",
+  "created_at": "2026-02-18T05:04:50Z",
   "tasks": [
     {
       "id": "council",
@@ -19,6 +19,9 @@
         "ralph",
         "workflow-orchestration-patterns",
         "saga-orchestration",
+        "api-design-principles",
+        "protocol-reverse-engineering",
+        "query-builder",
         "deployment-pipeline-design",
         "gitops-workflow",
         "workflow-automation",
@@ -47,11 +50,7 @@
         "react-best-practices",
         "react-state-management",
         "typescript-pro",
-        "typescript-advanced-types",
-        "deployment-pipeline-design",
-        "gitops-workflow",
-        "workflow-automation",
-        "vercel-deploy"
+        "typescript-advanced-types"
       ],
       "council_review": true,
       "retries": 0
@@ -73,15 +72,14 @@
         "package.json"
       ],
       "skill_hints": [
+        "api-design-principles",
+        "protocol-reverse-engineering",
+        "query-builder",
         "react-expert",
         "react-best-practices",
         "react-state-management",
         "typescript-pro",
-        "typescript-advanced-types",
-        "deployment-pipeline-design",
-        "gitops-workflow",
-        "workflow-automation",
-        "vercel-deploy"
+        "typescript-advanced-types"
       ],
       "council_review": true,
       "retries": 0
@@ -103,6 +101,9 @@
         "tsconfig.json"
       ],
       "skill_hints": [
+        "api-design-principles",
+        "protocol-reverse-engineering",
+        "query-builder",
         "react-ui-patterns",
         "ui-design-system",
         "tailwind-design-system",
@@ -112,11 +113,7 @@
         "react-best-practices",
         "react-state-management",
         "typescript-pro",
-        "typescript-advanced-types",
-        "deployment-pipeline-design",
-        "gitops-workflow",
-        "workflow-automation",
-        "vercel-deploy"
+        "typescript-advanced-types"
       ],
       "council_review": true,
       "retries": 0
@@ -138,15 +135,14 @@
         "playwright/**"
       ],
       "skill_hints": [
+        "api-design-principles",
+        "protocol-reverse-engineering",
+        "query-builder",
         "react-expert",
         "react-best-practices",
         "react-state-management",
         "typescript-pro",
         "typescript-advanced-types",
-        "deployment-pipeline-design",
-        "gitops-workflow",
-        "workflow-automation",
-        "vercel-deploy",
         "webapp-testing",
         "websocket-engineer",
         "ui-visual-validator"
@@ -170,6 +166,9 @@
         "deploy/**"
       ],
       "skill_hints": [
+        "api-design-principles",
+        "protocol-reverse-engineering",
+        "query-builder",
         "react-ui-patterns",
         "ui-design-system",
         "tailwind-design-system",
@@ -197,10 +196,9 @@
         ".orchestra/artifacts/*"
       ],
       "skill_hints": [
-        "deployment-pipeline-design",
-        "gitops-workflow",
-        "workflow-automation",
-        "vercel-deploy",
+        "api-design-principles",
+        "protocol-reverse-engineering",
+        "query-builder",
         "readme",
         "code-documenter"
       ],
