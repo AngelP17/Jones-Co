@@ -1,0 +1,11 @@
+.DS_Store
+
+# Node/Vite artifacts
+app/node_modules/
+app/dist/
+app/.vite/
+*.log
+
+# OS/editor
+.vscode/
+.idea/
