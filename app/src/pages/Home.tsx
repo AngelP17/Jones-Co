@@ -21,7 +21,6 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
-import HeroScene from '@/components/HeroScene';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const credentials = [
@@ -108,58 +107,51 @@ const Home = () => {
       <section className="relative overflow-hidden bg-[#10131c] pb-24 pt-28 text-white">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_85%_75%,rgba(137,208,197,0.18),transparent_45%)]" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur">
-                Arkansas Marketing Studio
+          <div className="mx-auto max-w-5xl text-center">
+            <h1 className="mb-5 text-5xl font-semibold leading-[1.04] sm:text-6xl md:text-7xl">
+              <span className="font-hero block text-[#f2ab62]">
+                Big-Agency Quality.
               </span>
-              <h1 className="mb-5 text-4xl font-semibold leading-[1.08] sm:text-5xl md:text-6xl">
-                <span className="font-hero block text-[#f2ab62]">
-                  Big-Agency Quality.
-                </span>
-                <span className="block">Small-Town Service.</span>
-              </h1>
-              <p className="mb-3 max-w-2xl text-lg text-white/85">
-                I help Arkansas businesses look professional online through
-                websites, social media, marketing materials, and content that
-                connects with your customers.
-              </p>
-              <p className="mb-8 text-sm font-semibold tracking-wide text-[#9ad7cd]">
-                Your Arkansas neighbor • Serving businesses statewide
-              </p>
+              <span className="block">Small-Town Service.</span>
+            </h1>
+            <p className="mx-auto mb-3 max-w-2xl text-lg text-white/85">
+              I help Arkansas businesses look professional online through
+              websites, social media, marketing materials, and content that
+              connects with your customers.
+            </p>
+            <p className="mb-8 text-sm font-semibold tracking-wide text-[#9ad7cd]">
+              Your Arkansas neighbor • Serving businesses statewide
+            </p>
 
-              <div className="mb-8 flex flex-wrap gap-4">
-                <Button
-                  onClick={() => handleNavClick('/contact')}
-                  size="lg"
-                  className="bg-[#f2ab62] text-[#10131c] hover:bg-[#f8ba79]"
-                >
-                  Get Started <IconArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button
-                  onClick={() => handleNavClick('/services')}
-                  size="lg"
-                  variant="outline"
-                  className="border-white/30 bg-white/5 text-white hover:bg-white/12"
-                >
-                  View Services
-                </Button>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {credentials.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-3 rounded-xl border border-white/12 bg-white/6 p-3 backdrop-blur"
-                  >
-                    <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#9ad7cd]" />
-                    <p className="text-sm leading-relaxed text-white/85">{item.text}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="mb-8 flex flex-wrap justify-center gap-4">
+              <Button
+                onClick={() => handleNavClick('/contact')}
+                size="lg"
+                className="bg-[#f2ab62] text-[#10131c] hover:bg-[#f8ba79]"
+              >
+                Get Started <IconArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button
+                onClick={() => handleNavClick('/services')}
+                size="lg"
+                variant="outline"
+                className="border-white/30 bg-white/5 text-white hover:bg-white/12"
+              >
+                View Services
+              </Button>
             </div>
 
-            <HeroScene />
+            <div className="grid gap-3 text-left sm:grid-cols-2">
+              {credentials.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3 rounded-xl border border-white/12 bg-white/6 p-3 backdrop-blur"
+                >
+                  <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#9ad7cd]" />
+                  <p className="text-sm leading-relaxed text-white/85">{item.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
