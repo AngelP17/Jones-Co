@@ -300,11 +300,11 @@ const Bundles = () => {
                 Every business is unique. Let's create a custom solution that
                 fits your specific needs and budget.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
                 <Button
                   onClick={() => handleNavClick('/contact')}
                   size="lg"
-                  className="bg-primary hover:bg-primary/90"
+                  className="w-full bg-primary hover:bg-primary/90 sm:w-auto"
                 >
                   Request Custom Quote
                 </Button>
@@ -312,7 +312,7 @@ const Bundles = () => {
                   onClick={() => handleNavClick('/services')}
                   variant="outline"
                   size="lg"
-                  className="border-background/30 bg-transparent text-background hover:bg-background/10 hover:text-background"
+                  className="w-full border-background/30 bg-transparent text-background hover:bg-background/10 hover:text-background sm:w-auto"
                 >
                   View Individual Services
                 </Button>
