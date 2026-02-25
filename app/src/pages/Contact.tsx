@@ -283,15 +283,7 @@ const Contact = () => {
                 </li>
               </ul>
 
-              <div className="mt-8 p-6 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground italic">
-                  "Addie was incredibly responsive and understood exactly what I
-                  needed. She made the whole process easy and stress-free."
-                </p>
-                <p className="text-sm font-medium mt-2">
-                  — Local Business Owner, Harrison AR
-                </p>
-              </div>
+
             </div>
           </div>
         </div>
