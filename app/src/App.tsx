@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import useRouter from './hooks/useRouter';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -11,9 +11,24 @@ const ThankYou = lazy(() => import('./pages/ThankYou'));
 
 function App() {
   const { currentPath } = useRouter();
+  const [displayPath, setDisplayPath] = useState(currentPath);
+  const [isVisible, setIsVisible] = useState(true);
 
-  const renderPage = () => {
-    switch (currentPath) {
+  useEffect(() => {
+    if (currentPath === displayPath) return;
+
+    setIsVisible(false);
+
+    const timeoutId = window.setTimeout(() => {
+      setDisplayPath(currentPath);
+      window.requestAnimationFrame(() => setIsVisible(true));
+    }, 170);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [currentPath, displayPath]);
+
+  const renderPage = (path: string) => {
+    switch (path) {
       case '/':
       case '#/':
         return <Home />;
@@ -43,10 +58,12 @@ function App() {
       }
     >
       <div
-        key={currentPath}
-        className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-1 motion-safe:duration-500 motion-safe:ease-out motion-reduce:animate-none"
+        key={displayPath}
+        className={`transition-all duration-300 ease-out motion-reduce:transition-none ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
+        }`}
       >
-        {renderPage()}
+        {renderPage(displayPath)}
       </div>
     </Suspense>
   );
