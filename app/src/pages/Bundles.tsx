@@ -312,7 +312,7 @@ const Bundles = () => {
                   onClick={() => handleNavClick('/services')}
                   variant="outline"
                   size="lg"
-                  className="border-background/30 text-background hover:bg-background/10"
+                  className="border-background/30 bg-transparent text-background hover:bg-background/10 hover:text-background"
                 >
                   View Individual Services
                 </Button>
