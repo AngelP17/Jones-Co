@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshDistortMaterial } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import { useEffect, useRef, useState } from 'react';
 import type { Mesh } from 'three';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -13,21 +13,21 @@ const PulseCore = () => {
     }
 
     const t = clock.getElapsedTime();
-    coreRef.current.rotation.x = t * 0.25;
-    coreRef.current.rotation.y = t * 0.4;
+    // Slower, more elegant rotation
+    coreRef.current.rotation.x = t * 0.08;
+    coreRef.current.rotation.y = t * 0.12;
   });
 
   return (
     <mesh ref={coreRef}>
-      <icosahedronGeometry args={[1.4, 10]} />
-      <MeshDistortMaterial
+      {/* Smooth sphere instead of wobbly icosahedron */}
+      <sphereGeometry args={[1.4, 64, 64]} />
+      <meshStandardMaterial
         color="#f2ab62"
         emissive="#f2ab62"
-        emissiveIntensity={0.35}
-        roughness={0.12}
-        metalness={0.5}
-        distort={0.3}
-        speed={1.8}
+        emissiveIntensity={0.25}
+        roughness={0.2}
+        metalness={0.6}
       />
     </mesh>
   );
@@ -41,12 +41,13 @@ const OrbitRings = () => {
     const t = clock.getElapsedTime();
 
     if (ringARef.current) {
-      ringARef.current.rotation.z = t * 0.25;
+      // Slower, more elegant rotation
+      ringARef.current.rotation.z = t * 0.1;
       ringARef.current.rotation.x = Math.PI / 2.5;
     }
 
     if (ringBRef.current) {
-      ringBRef.current.rotation.z = -t * 0.35;
+      ringBRef.current.rotation.z = -t * 0.12;
       ringBRef.current.rotation.x = Math.PI / 2;
       ringBRef.current.rotation.y = Math.PI / 8;
     }
@@ -55,12 +56,12 @@ const OrbitRings = () => {
   return (
     <>
       <mesh ref={ringARef}>
-        <torusGeometry args={[2.6, 0.04, 16, 220]} />
-        <meshStandardMaterial color="#89d0c5" emissive="#89d0c5" emissiveIntensity={0.2} />
+        <torusGeometry args={[2.6, 0.03, 16, 220]} />
+        <meshStandardMaterial color="#89d0c5" emissive="#89d0c5" emissiveIntensity={0.15} opacity={0.85} transparent />
       </mesh>
       <mesh ref={ringBRef}>
-        <torusGeometry args={[2.15, 0.025, 16, 220]} />
-        <meshStandardMaterial color="#f7d0a2" emissive="#f7d0a2" emissiveIntensity={0.2} />
+        <torusGeometry args={[2.15, 0.02, 16, 220]} />
+        <meshStandardMaterial color="#f7d0a2" emissive="#f7d0a2" emissiveIntensity={0.15} opacity={0.8} transparent />
       </mesh>
     </>
   );
@@ -102,12 +103,13 @@ const HeroScene = () => {
       <Canvas
         camera={{ position: [0, 0, 6], fov: 45 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: false, powerPreference: 'high-performance' }}
+        gl={{ antialias: true, powerPreference: 'high-performance' }}
       >
-        <ambientLight intensity={0.45} />
-        <directionalLight position={[3, 4, 4]} intensity={1.3} color="#ffe3bd" />
-        <pointLight position={[-4, -2, 3]} intensity={1} color="#8ad6ca" />
-        <Float speed={1.4} rotationIntensity={0.3} floatIntensity={0.8}>
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[3, 4, 4]} intensity={1.1} color="#ffe3bd" />
+        <pointLight position={[-4, -2, 3]} intensity={0.8} color="#8ad6ca" />
+        {/* Slower, more subtle floating */}
+        <Float speed={0.8} rotationIntensity={0.1} floatIntensity={0.4}>
           <PulseCore />
         </Float>
         <OrbitRings />

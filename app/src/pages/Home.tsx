@@ -14,7 +14,6 @@ import {
   IconMessages,
   IconNews,
   IconPhoneCall,
-  IconSparkles,
   IconWorldWww,
   IconWriting,
   IconMail,
@@ -23,6 +22,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
 import HeroScene from '@/components/HeroScene';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const credentials = [
   { icon: IconMapPin, text: 'Arkansas-based support with statewide service' },
@@ -89,6 +89,13 @@ const faqs = [
 const Home = () => {
   const { navigate } = useRouter();
 
+  // Scroll reveal hooks for different sections
+  const { ref: servicesRef, isVisible: servicesVisible } = useIntersectionObserver();
+  const { ref: contextRef, isVisible: contextVisible } = useIntersectionObserver();
+  const { ref: spanishRef, isVisible: spanishVisible } = useIntersectionObserver();
+  const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
+  const { ref: faqRef, isVisible: faqVisible } = useIntersectionObserver();
+
   const handleNavClick = (path: string) => {
     navigate(path);
     window.scrollTo(0, 0);
@@ -104,7 +111,6 @@ const Home = () => {
           <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur">
-                <IconSparkles className="h-4 w-4 text-[#f2ab62]" />
                 Arkansas Marketing Studio
               </span>
               <h1 className="mb-5 text-4xl font-semibold leading-[1.08] sm:text-5xl md:text-6xl">
@@ -160,8 +166,17 @@ const Home = () => {
 
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid items-start gap-12 lg:grid-cols-5">
-            <div className="lg:col-span-3">
+          <div
+            ref={contextRef}
+            className="grid items-start gap-12 lg:grid-cols-5"
+          >
+            <div
+              className={`lg:col-span-3 transition-all duration-300 ${
+                contextVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 -translate-x-3'
+              }`}
+            >
               <h2 className="mb-6 font-display text-3xl font-bold text-foreground md:text-4xl">
                 Local context, professional execution.
               </h2>
@@ -181,7 +196,13 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <div className="lg:col-span-2">
+            <div
+              className={`lg:col-span-2 transition-all duration-300 delay-75 ${
+                contextVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 translate-x-3'
+              }`}
+            >
               <Card className="border-primary/20 bg-accent">
                 <CardContent className="p-6">
                   <h3 className="mb-4 font-display text-lg font-semibold text-foreground">
@@ -204,44 +225,69 @@ const Home = () => {
 
       <section className="bg-muted py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-2 text-center font-display text-3xl font-bold text-foreground md:text-4xl">
-            What We Do
-          </h2>
-          <p className="mb-12 text-center text-muted-foreground">
-            Clear, polished marketing support for businesses across Arkansas.
-          </p>
+          <div
+            ref={servicesRef}
+            className={`transition-all duration-300 ${
+              servicesVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2'
+            }`}
+          >
+            <h2 className="mb-2 text-center font-display text-3xl font-bold text-foreground md:text-4xl">
+              What We Do
+            </h2>
+            <p className="mb-12 text-center text-muted-foreground">
+              Clear, polished marketing support for businesses across Arkansas.
+            </p>
+          </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service) => (
-              <Card
+            {services.map((service, index) => (
+              <div
                 key={service.title}
-                className="group bg-white transition-shadow hover:shadow-lg"
+                className={`transition-all duration-300 ${
+                  servicesVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{
+                  transitionDelay: servicesVisible ? `${index * 40}ms` : '0ms',
+                }}
               >
-                <CardContent className="flex h-full flex-col items-start p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
-                    {service.title}
-                  </h3>
-                  <p className="mb-4 flex-1 text-sm text-muted-foreground">
-                    {service.desc}
-                  </p>
-                  <Button
-                    onClick={() => handleNavClick(service.path)}
-                    variant="link"
-                    className="px-0 text-primary"
-                  >
-                    Learn More <IconArrowRight className="ml-1 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
+                <Card className="group h-full bg-white transition-shadow hover:shadow-lg">
+                  <CardContent className="flex h-full flex-col items-start p-6">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                      <service.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
+                      {service.title}
+                    </h3>
+                    <p className="mb-4 flex-1 text-sm text-muted-foreground">
+                      {service.desc}
+                    </p>
+                    <Button
+                      onClick={() => handleNavClick(service.path)}
+                      variant="link"
+                      className="px-0 text-primary"
+                    >
+                      Learn More <IconArrowRight className="ml-1 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       <section className="border-y border-primary/20 bg-accent py-16">
-        <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+        <div
+          ref={spanishRef}
+          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 transition-all duration-300 ${
+            spanishVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2'
+          }`}
+        >
           <IconLanguage className="mx-auto mb-4 h-10 w-10 text-primary" />
           <h2 className="mb-4 font-display text-3xl font-bold text-foreground">
             Servicios en Español
@@ -261,7 +307,14 @@ const Home = () => {
       </section>
 
       <section className="bg-foreground py-20 text-background">
-        <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+        <div
+          ref={ctaRef}
+          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 transition-all duration-300 ${
+            ctaVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2'
+          }`}
+        >
           <h2 className="mb-4 font-display text-3xl font-bold md:text-4xl">
             Ready to grow your business?
           </h2>
@@ -306,7 +359,14 @@ const Home = () => {
       </section>
 
       <section className="py-20">
-        <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+        <div
+          ref={faqRef}
+          className={`container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
+            faqVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2'
+          }`}
+        >
           <h2 className="mb-8 text-center font-display text-3xl font-bold text-foreground">
             Frequently Asked Questions
           </h2>

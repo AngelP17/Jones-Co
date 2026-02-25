@@ -107,3 +107,41 @@
     letter-spacing: 0.01em;
   }
 }
+
+/* Mobile Touch Feedback - Better UX for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  /* Ensure minimum touch targets */
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Touch feedback on interactive elements */
+  .interactive:active {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: scale(0.98);
+  }
+
+  /* Button touch feedback - enhance what we already have */
+  button:active:not(:disabled) {
+    opacity: 0.8;
+  }
+
+  /* Card touch feedback */
+  [data-slot="card"]:active {
+    transform: scale(0.98) !important;
+  }
+
+  /* Link touch feedback */
+  a:active {
+    opacity: 0.8;
+  }
+
+  /* Remove hover effects on touch devices to prevent stuck states */
+  button:hover,
+  [data-slot="card"]:hover {
+    transform: none;
+  }
+}
