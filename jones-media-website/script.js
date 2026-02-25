@@ -158,6 +158,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Dynamic year in footer
+  const yearEls = document.querySelectorAll('[data-year]');
+  if (yearEls.length > 0) {
+    const currentYear = new Date().getFullYear();
+    yearEls.forEach(el => {
+      el.textContent = currentYear;
+    });
+  }
+
   // Form submission with validation and spam protection
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {

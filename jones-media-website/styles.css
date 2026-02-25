@@ -444,10 +444,19 @@ img {
   letter-spacing: 0.08em;
 }
 
+.hero-kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.75rem;
+}
+
 .hero-title {
   font-size: 2.75rem;
   margin-bottom: 1.25rem;
   line-height: 1.1;
+  max-width: 18ch;
 }
 
 .text-primary {
@@ -475,6 +484,10 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.hero-buttons .btn {
+  min-width: 12rem;
 }
 
 .hero-stats {
@@ -617,16 +630,19 @@ img {
 
 .services-grid {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .service-card {
   background: var(--surface);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: 2.25rem 2rem;
   box-shadow: var(--shadow);
   transition: var(--transition);
   border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .service-card:hover {
@@ -673,6 +689,7 @@ img {
   font-weight: 600;
   color: var(--primary);
   transition: var(--transition);
+  margin-top: auto;
 }
 
 .service-link:hover {
@@ -694,6 +711,12 @@ img {
 }
 
 @media (min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
   .services-grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -903,7 +926,7 @@ img {
 
 .footer-grid {
   display: grid;
-  gap: 2.5rem;
+  gap: 2.75rem;
   margin-bottom: 3rem;
 }
 
@@ -999,6 +1022,11 @@ img {
   margin-bottom: 1rem;
 }
 
+.footer-cta .btn {
+  width: 100%;
+  justify-content: center;
+}
+
 .footer-bottom {
   display: flex;
   flex-direction: column;
@@ -1018,6 +1046,10 @@ img {
   .footer-bottom {
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .footer-cta .btn {
+    width: auto;
   }
 }
 
@@ -1777,6 +1809,10 @@ img {
   .btn-lg {
     width: 100%;
     justify-content: center;
+  }
+
+  .hero-buttons .btn {
+    min-width: 100%;
   }
 
   .cta-contact {
