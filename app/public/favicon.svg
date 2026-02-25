@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Jones and Co Media">
+  <rect width="64" height="64" rx="14" fill="#24304a" />
+  <circle cx="24" cy="32" r="10" fill="#e18258" />
+  <path d="M35 20h7c5 0 8 2.6 8 6.6 0 2.8-1.6 4.7-4.4 5.5L51 44h-6.5l-4.8-10.4H35V44h-6V20zm6.3 9.1c1.8 0 2.8-.9 2.8-2.3 0-1.5-1-2.3-2.8-2.3H35v4.6h6.3z" fill="#f2f4f8"/>
+</svg>

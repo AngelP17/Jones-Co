@@ -107,18 +107,18 @@ const Home = () => {
       <section className="relative flex min-h-screen overflow-hidden bg-foreground text-white">
         <div className="container relative mx-auto flex w-full px-4 sm:px-6 lg:px-8">
           <div className="mx-auto flex w-full max-w-5xl flex-col justify-center pt-16 text-center sm:pt-20">
-            <h1 className="animate-smooth mb-7 text-6xl font-semibold leading-[1.04] sm:text-7xl md:text-8xl">
+            <h1 className="hero-intro hero-intro-1 mb-7 text-6xl font-semibold leading-[1.04] sm:text-7xl md:text-8xl">
               <span className="font-hero block text-[#f2ab62]">
                 Big-Agency Quality.
               </span>
               <span className="block">Small-Town Service.</span>
             </h1>
-            <p className="mx-auto mb-5 max-w-2xl text-lg text-white/85">
+            <p className="hero-intro hero-intro-2 mx-auto mb-5 max-w-2xl text-lg text-white/85">
               I help Arkansas businesses look professional online through
               websites, social media, marketing materials, and content that
               connects with your customers.
             </p>
-            <p className="mb-10 text-sm font-semibold tracking-wide text-[#9ad7cd]">
+            <p className="hero-intro hero-intro-3 mb-10 text-sm font-semibold tracking-wide text-[#9ad7cd]">
               Your Arkansas neighbor • Serving businesses statewide
             </p>
 

@@ -8,7 +8,6 @@ import {
   IconChecklist,
   IconFileText,
   IconSchool,
-  IconSparkles,
   IconWriting,
 } from '@tabler/icons-react';
 import Navbar from '@/components/Navbar';
@@ -214,7 +213,6 @@ const StudentServices = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/85">
-              <IconSparkles className="h-4 w-4 text-primary" />
               Student Services
             </p>
             <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">

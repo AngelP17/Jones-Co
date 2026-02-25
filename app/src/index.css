@@ -85,12 +85,22 @@
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  /* Keep animations, but soften them for accessibility */
+  .reveal-fade-up,
+  .reveal-fade-left,
+  .reveal-fade-right {
+    transition-duration: 200ms !important;
+  }
+
+  .reveal-fade-up:not(.visible),
+  .reveal-fade-left:not(.visible),
+  .reveal-fade-right:not(.visible) {
+    transform: none !important;
+    opacity: 0;
+  }
+
+  .hero-intro {
+    animation-duration: 450ms !important;
   }
 }
 
@@ -176,6 +186,31 @@
   .stagger-4 { transition-delay: 200ms; }
   .stagger-5 { transition-delay: 250ms; }
   .stagger-6 { transition-delay: 300ms; }
+
+  /* Hero intro sequence (slower and clearly visible) */
+  @keyframes heroIntro {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 12px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .hero-intro {
+    opacity: 0;
+    animation-name: heroIntro;
+    animation-duration: 850ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: forwards;
+    will-change: transform, opacity;
+  }
+
+  .hero-intro-1 { animation-delay: 80ms; }
+  .hero-intro-2 { animation-delay: 240ms; }
+  .hero-intro-3 { animation-delay: 420ms; }
 }
 
 /* Mobile Touch Feedback - Better UX for touch devices */

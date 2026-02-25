@@ -68,12 +68,12 @@ function App() {
     >
       <div
         key={displayPath}
-        className={`transition-all duration-[180ms] ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+        className={`transition-opacity duration-300 ease-out ${
           isExiting
-            ? '-translate-y-1 opacity-0'
+            ? 'opacity-0'
             : isEntering
-            ? 'translate-y-0 opacity-100'
-            : 'translate-y-1 opacity-0'
+            ? 'opacity-100'
+            : 'opacity-0'
         }`}
       >
         {renderPage(displayPath)}
