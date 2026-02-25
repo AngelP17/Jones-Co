@@ -100,6 +100,9 @@ const Home = () => {
     window.scrollTo(0, 0);
   };
 
+  const revealBaseClass =
+    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -155,14 +158,14 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-24">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div
             ref={contextRef}
             className="grid items-start gap-12 lg:grid-cols-5"
           >
             <div
-              className={`lg:col-span-3 transition-all duration-300 ${
+              className={`lg:col-span-3 ${revealBaseClass} ${
                 contextVisible
                   ? 'opacity-100 translate-x-0'
                   : 'opacity-0 -translate-x-3'
@@ -188,7 +191,7 @@ const Home = () => {
               </div>
             </div>
             <div
-              className={`lg:col-span-2 transition-all duration-300 delay-75 ${
+              className={`lg:col-span-2 ${revealBaseClass} delay-[60ms] ${
                 contextVisible
                   ? 'opacity-100 translate-x-0'
                   : 'opacity-0 translate-x-3'
@@ -214,11 +217,11 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-muted py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-muted py-20 sm:py-24">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div
             ref={servicesRef}
-            className={`transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none ${
+            className={`${revealBaseClass} ${
               servicesVisible
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-2'
@@ -235,7 +238,7 @@ const Home = () => {
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className={`transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none ${
+                className={`${revealBaseClass} ${
                   servicesVisible
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-2'
@@ -270,10 +273,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="border-y border-primary/20 bg-accent py-16">
+      <section className="border-y border-primary/20 bg-accent py-20 sm:py-24">
         <div
           ref={spanishRef}
-          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 transition-all duration-300 ${
+          className={`container mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8 ${revealBaseClass} ${
             spanishVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-2'
@@ -297,10 +300,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-foreground py-20 text-background">
+      <section className="bg-foreground py-20 text-background sm:py-24">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 transition-all duration-300 ${
+          className={`container mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8 ${revealBaseClass} ${
             ctaVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-2'
@@ -349,10 +352,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-20 sm:py-24">
         <div
           ref={faqRef}
-          className={`container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
+          className={`container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 ${revealBaseClass} ${
             faqVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-2'
