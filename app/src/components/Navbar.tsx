@@ -79,7 +79,7 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <Button 
               onClick={() => handleNavClick('/contact')}
-              className="bg-primary hover:bg-primary/90"
+              className="premium-pill-primary premium-nav-btn font-general"
             >
               Get Started
             </Button>
@@ -121,7 +121,7 @@ const Navbar = () => {
                 <div className="mt-auto pb-6">
                   <Button
                     onClick={() => handleNavClick('/contact')}
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="premium-pill-primary font-general w-full"
                   >
                     Get Started
                   </Button>
