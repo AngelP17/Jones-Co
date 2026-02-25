@@ -107,7 +107,7 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="relative flex min-h-screen overflow-hidden bg-[#10131c] text-white">
+      <section className="relative flex min-h-screen overflow-hidden bg-foreground text-white">
         <div className="container relative mx-auto flex w-full px-4 sm:px-6 lg:px-8">
           <div className="mx-auto flex w-full max-w-5xl flex-col justify-center pt-16 text-center sm:pt-20">
             <h1 className="mb-7 text-6xl font-semibold leading-[1.04] sm:text-7xl md:text-8xl">
@@ -129,7 +129,7 @@ const Home = () => {
               <Button
                 onClick={() => handleNavClick('/contact')}
                 size="lg"
-                className="bg-[#f2ab62] text-[#10131c] hover:bg-[#f8ba79]"
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 Get Started <IconArrowRight className="ml-2 h-4 w-4" />
               </Button>

@@ -42,7 +42,12 @@ function App() {
         </div>
       }
     >
-      {renderPage()}
+      <div
+        key={currentPath}
+        className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-1 motion-safe:duration-500 motion-safe:ease-out motion-reduce:animate-none"
+      >
+        {renderPage()}
+      </div>
     </Suspense>
   );
 }
