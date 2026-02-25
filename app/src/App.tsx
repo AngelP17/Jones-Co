@@ -13,7 +13,7 @@ function App() {
   const { currentPath } = useRouter();
   const [displayPath, setDisplayPath] = useState(currentPath);
   const [isExiting, setIsExiting] = useState(false);
-  const [isEntering, setIsEntering] = useState(false);
+  const [isEntering, setIsEntering] = useState(true); // Start visible on initial load
 
   useEffect(() => {
     if (currentPath === displayPath) return;
