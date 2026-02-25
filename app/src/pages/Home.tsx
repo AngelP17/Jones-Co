@@ -297,7 +297,7 @@ const Home = () => {
               onClick={() => handleNavClick('/bundles')}
               variant="outline"
               size="lg"
-              className="border-background/30 text-background hover:bg-background/10"
+              className="border-background/50 bg-transparent text-background hover:bg-background/10 hover:text-background"
             >
               View Pricing
             </Button>
