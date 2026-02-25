@@ -117,66 +117,43 @@
     letter-spacing: 0.01em;
   }
 
-  /* GPU-Accelerated Smooth Animations */
-  .animate-smooth {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
-    transform: translateZ(0);
-  }
-
   /* Smooth fade-up reveal */
   .reveal-fade-up {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal-fade-up:not(.visible) {
     opacity: 0;
-    transform: translate3d(0, 8px, 0);
   }
 
   .reveal-fade-up.visible {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 
   /* Smooth fade-left reveal */
   .reveal-fade-left {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal-fade-left:not(.visible) {
     opacity: 0;
-    transform: translate3d(-12px, 0, 0);
   }
 
   .reveal-fade-left.visible {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 
   /* Smooth fade-right reveal */
   .reveal-fade-right {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal-fade-right:not(.visible) {
     opacity: 0;
-    transform: translate3d(12px, 0, 0);
   }
 
   .reveal-fade-right.visible {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 
   /* Stagger delays for cascading animations */
@@ -191,11 +168,9 @@
   @keyframes heroIntro {
     from {
       opacity: 0;
-      transform: translate3d(0, 12px, 0);
     }
     to {
       opacity: 1;
-      transform: translate3d(0, 0, 0);
     }
   }
 
@@ -205,7 +180,6 @@
     animation-duration: 850ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     animation-fill-mode: forwards;
-    will-change: transform, opacity;
   }
 
   .hero-intro-1 { animation-delay: 80ms; }
