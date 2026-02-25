@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -87,6 +88,7 @@ const faqs = [
 
 const Home = () => {
   const { navigate } = useRouter();
+  const [heroReady, setHeroReady] = useState(false);
 
   // Scroll reveal hooks for different sections
   const { ref: servicesRef, isVisible: servicesVisible } = useIntersectionObserver();
@@ -100,6 +102,17 @@ const Home = () => {
     window.scrollTo(0, 0);
   };
 
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) {
+      setHeroReady(true);
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => setHeroReady(true));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -107,23 +120,23 @@ const Home = () => {
       <section className="relative overflow-hidden bg-[#10131c] pb-24 pt-28 text-white">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_85%_75%,rgba(137,208,197,0.18),transparent_45%)]" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl text-center">
-            <h1 className="mb-5 text-5xl font-semibold leading-[1.04] sm:text-6xl md:text-7xl">
+          <div className={`mx-auto max-w-5xl text-center transition-all duration-500 ease-out ${heroReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+            <h1 className={`mb-5 text-5xl font-semibold leading-[1.04] transition-all duration-500 ease-out sm:text-6xl md:text-7xl ${heroReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
               <span className="font-hero block text-[#f2ab62]">
                 Big-Agency Quality.
               </span>
               <span className="block">Small-Town Service.</span>
             </h1>
-            <p className="mx-auto mb-3 max-w-2xl text-lg text-white/85">
+            <p className={`mx-auto mb-3 max-w-2xl text-lg text-white/85 transition-all delay-75 duration-500 ease-out ${heroReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
               I help Arkansas businesses look professional online through
               websites, social media, marketing materials, and content that
               connects with your customers.
             </p>
-            <p className="mb-8 text-sm font-semibold tracking-wide text-[#9ad7cd]">
+            <p className={`mb-8 text-sm font-semibold tracking-wide text-[#9ad7cd] transition-all delay-100 duration-500 ease-out ${heroReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
               Your Arkansas neighbor • Serving businesses statewide
             </p>
 
-            <div className="mb-8 flex flex-wrap justify-center gap-4">
+            <div className={`mb-8 flex flex-wrap justify-center gap-4 transition-all delay-150 duration-500 ease-out ${heroReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
               <Button
                 onClick={() => handleNavClick('/contact')}
                 size="lg"
@@ -145,7 +158,8 @@ const Home = () => {
               {credentials.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 rounded-xl border border-white/12 bg-white/6 p-3 backdrop-blur"
+                  className={`flex items-start gap-3 rounded-xl border border-white/12 bg-white/6 p-3 backdrop-blur transition-all duration-500 ease-out hover:-translate-y-0.5 hover:border-white/20 ${heroReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+                  style={{ transitionDelay: `${200 + index * 40}ms` }}
                 >
                   <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#9ad7cd]" />
                   <p className="text-sm leading-relaxed text-white/85">{item.text}</p>
