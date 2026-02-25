@@ -5,6 +5,7 @@ import { Check, Star, Zap, Crown } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const bundles = [
   {
@@ -72,6 +73,14 @@ const bundles = [
 const Bundles = () => {
   const { navigate } = useRouter();
 
+  // Scroll reveal hooks
+  const { ref: bundlesRef, isVisible: bundlesVisible } = useIntersectionObserver();
+  const { ref: comparisonRef, isVisible: comparisonVisible } = useIntersectionObserver();
+  const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
+
+  const revealBaseClass =
+    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
+
   const handleNavClick = (path: string) => {
     navigate(path);
     window.scrollTo(0, 0);
@@ -99,16 +108,26 @@ const Bundles = () => {
       {/* Bundles */}
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-3">
-            {bundles.map((bundle) => (
-              <Card
+          <div ref={bundlesRef} className="grid gap-8 lg:grid-cols-3">
+            {bundles.map((bundle, index) => (
+              <div
                 key={bundle.name}
-                className={`relative flex flex-col ${
-                  bundle.popular
-                    ? 'border-primary shadow-xl scale-105'
-                    : bundle.color
+                className={`${revealBaseClass} ${
+                  bundlesVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
                 }`}
+                style={{
+                  transitionDelay: bundlesVisible ? `${index * 80}ms` : '0ms',
+                }}
               >
+                <Card
+                  className={`relative flex flex-col h-full ${
+                    bundle.popular
+                      ? 'border-primary shadow-xl scale-105'
+                      : bundle.color
+                  }`}
+                >
                 {bundle.popular && (
                   <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1">
                     Most Popular
@@ -175,6 +194,7 @@ const Bundles = () => {
                   </Button>
                 </CardContent>
               </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -182,7 +202,14 @@ const Bundles = () => {
 
       {/* Comparison */}
       <section className="bg-muted py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          ref={comparisonRef}
+          className={`container mx-auto px-4 sm:px-6 lg:px-8 ${revealBaseClass} ${
+            comparisonVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2'
+          }`}
+        >
           <h2 className="font-display text-2xl font-bold text-center mb-8">
             Bundle Comparison
           </h2>
@@ -268,7 +295,14 @@ const Bundles = () => {
 
       {/* Custom Package CTA */}
       <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          ref={ctaRef}
+          className={`container mx-auto px-4 sm:px-6 lg:px-8 ${revealBaseClass} ${
+            ctaVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2'
+          }`}
+        >
           <Card className="bg-foreground text-background">
             <CardContent className="p-8 md:p-12 text-center">
               <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">

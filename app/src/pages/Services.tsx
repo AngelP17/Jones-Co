@@ -16,6 +16,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 type ServicePackage = {
   name: string;
@@ -268,6 +269,13 @@ const Services = () => {
   const [activeTab, setActiveTab] = useState('social-media');
   const { navigate } = useRouter();
 
+  // Scroll reveal hooks
+  const { ref: tabsRef, isVisible: tabsVisible } = useIntersectionObserver();
+  const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
+
+  const revealBaseClass =
+    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
+
   const handleContact = () => {
     navigate('/contact');
     window.scrollTo(0, 0);
@@ -297,11 +305,19 @@ const Services = () => {
 
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Tabs
-            value={activeTab}
-            onValueChange={setActiveTab}
-            className="w-full"
+          <div
+            ref={tabsRef}
+            className={`${revealBaseClass} ${
+              tabsVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2'
+            }`}
           >
+            <Tabs
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="w-full"
+            >
             <TabsList className="mb-8 flex h-auto max-w-full justify-start gap-2 overflow-x-auto bg-transparent p-0 pb-2">
               {serviceCategories.map((category) => (
                 <TabsTrigger
@@ -386,11 +402,19 @@ const Services = () => {
               </TabsContent>
             ))}
           </Tabs>
+          </div>
         </div>
       </section>
 
       <section className="py-16">
-        <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+        <div
+          ref={ctaRef}
+          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 ${revealBaseClass} ${
+            ctaVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2'
+          }`}
+        >
           <h2 className="mb-4 font-display text-2xl font-bold">
             Not sure what you need?
           </h2>

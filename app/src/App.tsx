@@ -12,19 +12,28 @@ const ThankYou = lazy(() => import('./pages/ThankYou'));
 function App() {
   const { currentPath } = useRouter();
   const [displayPath, setDisplayPath] = useState(currentPath);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
+  const [isEntering, setIsEntering] = useState(false);
 
   useEffect(() => {
     if (currentPath === displayPath) return;
 
-    setIsVisible(false);
+    // Start exit animation
+    setIsExiting(true);
+    setIsEntering(false);
 
-    const timeoutId = window.setTimeout(() => {
+    // After exit completes, switch content
+    const exitTimeout = window.setTimeout(() => {
       setDisplayPath(currentPath);
-      window.requestAnimationFrame(() => setIsVisible(true));
-    }, 170);
+      setIsExiting(false);
 
-    return () => window.clearTimeout(timeoutId);
+      // Trigger enter animation on next frame
+      window.requestAnimationFrame(() => {
+        setIsEntering(true);
+      });
+    }, 180);
+
+    return () => window.clearTimeout(exitTimeout);
   }, [currentPath, displayPath]);
 
   const renderPage = (path: string) => {
@@ -59,8 +68,12 @@ function App() {
     >
       <div
         key={displayPath}
-        className={`transition-all duration-300 ease-out motion-reduce:transition-none ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
+        className={`transition-all duration-[180ms] ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+          isExiting
+            ? '-translate-y-1 opacity-0'
+            : isEntering
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-1 opacity-0'
         }`}
       >
         {renderPage(displayPath)}

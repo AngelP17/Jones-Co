@@ -14,6 +14,7 @@ import {
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjgeovnd';
 
@@ -63,6 +64,14 @@ const Contact = () => {
   });
   const thankYouUrl = `${window.location.origin}${window.location.pathname}#/thank-you`;
 
+  // Scroll reveal hooks
+  const { ref: contactCardsRef, isVisible: contactCardsVisible } = useIntersectionObserver();
+  const { ref: formRef, isVisible: formVisible } = useIntersectionObserver();
+  const { ref: locationsRef, isVisible: locationsVisible } = useIntersectionObserver();
+
+  const revealBaseClass =
+    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -91,26 +100,38 @@ const Contact = () => {
       {/* Contact Info Cards */}
       <section className="py-12 -mt-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {contactInfo.map((item) => (
-              <Card key={item.title} className="bg-white shadow-lg">
-                <CardContent className="p-6">
-                  <item.icon className="h-8 w-8 text-primary mb-3" />
-                  <p className="text-sm text-muted-foreground mb-1">
-                    {item.title}
-                  </p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="font-medium text-foreground hover:text-primary transition-colors"
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p className="font-medium text-foreground">{item.value}</p>
-                  )}
-                </CardContent>
-              </Card>
+          <div ref={contactCardsRef} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {contactInfo.map((item, index) => (
+              <div
+                key={item.title}
+                className={`${revealBaseClass} ${
+                  contactCardsVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{
+                  transitionDelay: contactCardsVisible ? `${index * 60}ms` : '0ms',
+                }}
+              >
+                <Card className="bg-white shadow-lg">
+                  <CardContent className="p-6">
+                    <item.icon className="h-8 w-8 text-primary mb-3" />
+                    <p className="text-sm text-muted-foreground mb-1">
+                      {item.title}
+                    </p>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="font-medium text-foreground hover:text-primary transition-colors"
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="font-medium text-foreground">{item.value}</p>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -119,9 +140,15 @@ const Contact = () => {
       {/* Contact Form */}
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2">
+          <div ref={formRef} className="grid gap-12 lg:grid-cols-2">
             {/* Form */}
-            <div>
+            <div
+              className={`${revealBaseClass} ${
+                formVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 -translate-x-3'
+              }`}
+            >
               <h2 className="font-display text-2xl font-bold mb-6">
                 Send a Message
               </h2>
@@ -224,7 +251,13 @@ const Contact = () => {
             </div>
 
             {/* Info */}
-            <div>
+            <div
+              className={`${revealBaseClass} delay-[60ms] ${
+                formVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 translate-x-3'
+              }`}
+            >
               <h2 className="font-display text-2xl font-bold mb-6">
                 Schedule a Call
               </h2>
@@ -292,36 +325,69 @@ const Contact = () => {
       {/* Locations */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-2xl font-bold text-center mb-8">
-            Serving Arkansas
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
-            <Card>
-              <CardContent className="p-6">
-                <MapPin className="h-8 w-8 text-primary mb-3" />
-                <h3 className="font-display text-lg font-bold mb-1">
-                  Harrison
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  North Arkansas hub serving Boone, Marion, and Newton counties.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <MapPin className="h-8 w-8 text-primary mb-3" />
-                <h3 className="font-display text-lg font-bold mb-1">
-                  Fayetteville
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  NWA location serving Washington and Benton counties.
-                </p>
-              </CardContent>
-            </Card>
+          <div
+            ref={locationsRef}
+            className={`${revealBaseClass} ${
+              locationsVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2'
+            }`}
+          >
+            <h2 className="font-display text-2xl font-bold text-center mb-8">
+              Serving Arkansas
+            </h2>
           </div>
-          <p className="text-center text-muted-foreground mt-6">
-            Don't see your area? I work with businesses anywhere — let's connect!
-          </p>
+          <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
+            <div
+              className={`${revealBaseClass} delay-[60ms] ${
+                locationsVisible
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-2'
+              }`}
+            >
+              <Card>
+                <CardContent className="p-6">
+                  <MapPin className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="font-display text-lg font-bold mb-1">
+                    Harrison
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    North Arkansas hub serving Boone, Marion, and Newton counties.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+            <div
+              className={`${revealBaseClass} delay-[120ms] ${
+                locationsVisible
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-2'
+              }`}
+            >
+              <Card>
+                <CardContent className="p-6">
+                  <MapPin className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="font-display text-lg font-bold mb-1">
+                    Fayetteville
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    NWA location serving Washington and Benton counties.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+          <div
+            className={`${revealBaseClass} delay-[180ms] ${
+              locationsVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2'
+            }`}
+          >
+            <p className="text-center text-muted-foreground mt-6">
+              Don't see your area? I work with businesses anywhere — let's connect!
+            </p>
+          </div>
         </div>
       </section>
 

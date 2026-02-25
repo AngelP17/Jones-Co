@@ -14,6 +14,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 type ServiceOffer = {
   name: string;
@@ -193,6 +194,16 @@ const processSteps = [
 const StudentServices = () => {
   const { navigate } = useRouter();
 
+  // Scroll reveal hooks
+  const { ref: servicesRef, isVisible: servicesVisible } = useIntersectionObserver();
+  const { ref: bundlesRef, isVisible: bundlesVisible } = useIntersectionObserver();
+  const { ref: whyRef, isVisible: whyVisible } = useIntersectionObserver();
+  const { ref: processRef, isVisible: processVisible } = useIntersectionObserver();
+  const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
+
+  const revealBaseClass =
+    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
+
   const handleGetStarted = () => {
     navigate('/contact');
     window.scrollTo(0, 0);
@@ -234,13 +245,32 @@ const StudentServices = () => {
 
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-10 font-display text-3xl font-bold text-foreground">
-            Services Overview
-          </h2>
+          <div
+            ref={servicesRef}
+            className={`${revealBaseClass} ${
+              servicesVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2'
+            }`}
+          >
+            <h2 className="mb-10 font-display text-3xl font-bold text-foreground">
+              Services Overview
+            </h2>
+          </div>
 
           <div className="space-y-16">
-            {serviceGroups.map((group) => (
-              <div key={group.id}>
+            {serviceGroups.map((group, groupIndex) => (
+              <div
+                key={group.id}
+                className={`${revealBaseClass} delay-[60ms] ${
+                  servicesVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{
+                  transitionDelay: servicesVisible ? `${(groupIndex + 1) * 100}ms` : '0ms',
+                }}
+              >
                 <div className="mb-5 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                     <group.icon className="h-5 w-5 text-primary" />
@@ -311,13 +341,33 @@ const StudentServices = () => {
 
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-8 font-display text-3xl font-bold text-foreground">
-            Popular Bundles
-          </h2>
+          <div
+            ref={bundlesRef}
+            className={`${revealBaseClass} ${
+              bundlesVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2'
+            }`}
+          >
+            <h2 className="mb-8 font-display text-3xl font-bold text-foreground">
+              Popular Bundles
+            </h2>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {bundles.map((bundle) => (
-              <Card key={bundle.name} className="border-primary/30">
+            {bundles.map((bundle, index) => (
+              <div
+                key={bundle.name}
+                className={`${revealBaseClass} delay-[60ms] ${
+                  bundlesVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{
+                  transitionDelay: bundlesVisible ? `${(index + 1) * 60}ms` : '0ms',
+                }}
+              >
+                <Card className="border-primary/30 h-full">
                 <CardHeader>
                   <CardTitle className="font-display text-xl">{bundle.name}</CardTitle>
                   <p className="text-2xl font-bold text-primary">{bundle.price}</p>
@@ -336,6 +386,7 @@ const StudentServices = () => {
                   </p>
                 </CardContent>
               </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -358,6 +409,7 @@ const StudentServices = () => {
                   </p>
                 </CardContent>
               </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -379,6 +431,7 @@ const StudentServices = () => {
                   <p className="text-sm text-white/75">{step.detail}</p>
                 </CardContent>
               </Card>
+              </div>
             ))}
           </div>
         </div>

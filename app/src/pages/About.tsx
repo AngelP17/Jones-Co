@@ -12,6 +12,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const stats = [
   { icon: Users, value: '17,000+', label: 'Weekly Readers Reached' },
@@ -73,6 +74,16 @@ const values = [
 const About = () => {
   const { navigate } = useRouter();
 
+  // Scroll reveal hooks
+  const { ref: statsRef, isVisible: statsVisible } = useIntersectionObserver();
+  const { ref: storyRef, isVisible: storyVisible } = useIntersectionObserver();
+  const { ref: valuesRef, isVisible: valuesVisible } = useIntersectionObserver();
+  const { ref: educationRef, isVisible: educationVisible } = useIntersectionObserver();
+  const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
+
+  const revealBaseClass =
+    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -96,17 +107,29 @@ const About = () => {
       {/* Stats */}
       <section className="py-12 -mt-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <Card key={stat.label} className="bg-white shadow-lg">
-                <CardContent className="p-6 text-center">
-                  <stat.icon className="mx-auto h-8 w-8 text-primary mb-3" />
-                  <p className="text-3xl font-bold text-foreground mb-1">
-                    {stat.value}
-                  </p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-                </CardContent>
-              </Card>
+          <div ref={statsRef} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className={`${revealBaseClass} ${
+                  statsVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{
+                  transitionDelay: statsVisible ? `${index * 60}ms` : '0ms',
+                }}
+              >
+                <Card className="bg-white shadow-lg">
+                  <CardContent className="p-6 text-center">
+                    <stat.icon className="mx-auto h-8 w-8 text-primary mb-3" />
+                    <p className="text-3xl font-bold text-foreground mb-1">
+                      {stat.value}
+                    </p>
+                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -115,8 +138,14 @@ const About = () => {
       {/* Story */}
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <div>
+          <div ref={storyRef} className="grid gap-12 lg:grid-cols-2 items-center">
+            <div
+              className={`${revealBaseClass} ${
+                storyVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 -translate-x-3'
+              }`}
+            >
               <h2 className="font-display text-3xl font-bold mb-6">
                 My Story
               </h2>
@@ -150,7 +179,13 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-accent rounded-2xl p-8">
+            <div
+              className={`bg-accent rounded-2xl p-8 ${revealBaseClass} delay-[60ms] ${
+                storyVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 translate-x-3'
+              }`}
+            >
               <h3 className="font-display text-xl font-bold mb-6">
                 Credentials & Experience
               </h3>
@@ -179,24 +214,45 @@ const About = () => {
       {/* Values */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl font-bold text-center mb-4">
-            Our Values
-          </h2>
-          <p className="text-muted-foreground text-center max-w-xl mx-auto mb-12">
-            The principles that guide everything we do at Jones & Co. Media.
-          </p>
+          <div
+            ref={valuesRef}
+            className={`${revealBaseClass} ${
+              valuesVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2'
+            }`}
+          >
+            <h2 className="font-display text-3xl font-bold text-center mb-4">
+              Our Values
+            </h2>
+            <p className="text-muted-foreground text-center max-w-xl mx-auto mb-12">
+              The principles that guide everything we do at Jones & Co. Media.
+            </p>
+          </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value) => (
-              <Card key={value.title} className="bg-white">
-                <CardContent className="p-6">
-                  <h3 className="font-display text-lg font-bold mb-2">
-                    {value.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {value.description}
-                  </p>
-                </CardContent>
-              </Card>
+            {values.map((value, index) => (
+              <div
+                key={value.title}
+                className={`${revealBaseClass} ${
+                  valuesVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{
+                  transitionDelay: valuesVisible ? `${index * 60}ms` : '0ms',
+                }}
+              >
+                <Card className="bg-white">
+                  <CardContent className="p-6">
+                    <h3 className="font-display text-lg font-bold mb-2">
+                      {value.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {value.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -206,12 +262,28 @@ const About = () => {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl font-bold text-center mb-8">
-              Education & Background
-            </h2>
+            <div
+              ref={educationRef}
+              className={`${revealBaseClass} ${
+                educationVisible
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-2'
+              }`}
+            >
+              <h2 className="font-display text-3xl font-bold text-center mb-8">
+                Education & Background
+              </h2>
+            </div>
             <div className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
+              <div
+                className={`${revealBaseClass} delay-[60ms] ${
+                  educationVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+              >
+                <Card>
+                  <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                       <MapPin className="h-6 w-6 text-primary" />
@@ -229,16 +301,24 @@ const About = () => {
                   </div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                      <Globe className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-bold">
-                        Stone Ward Advertising Agency
-                      </h3>
+              </div>
+              <div
+                className={`${revealBaseClass} delay-[120ms] ${
+                  educationVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+              >
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                        <Globe className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-lg font-bold">
+                          Stone Ward Advertising Agency
+                        </h3>
                       <p className="text-muted-foreground">
                         Professional experience at one of Arkansas's leading
                         advertising agencies, working with diverse clients
@@ -248,16 +328,24 @@ const About = () => {
                   </div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                      <Heart className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-bold">
-                        Arkansas Native
-                      </h3>
+              </div>
+              <div
+                className={`${revealBaseClass} delay-[180ms] ${
+                  educationVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+              >
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                        <Heart className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-lg font-bold">
+                          Arkansas Native
+                        </h3>
                       <p className="text-muted-foreground">
                         Born and raised in Arkansas with deep roots in both
                         Harrison and Fayetteville communities. Understanding of
@@ -267,6 +355,7 @@ const About = () => {
                   </div>
                 </CardContent>
               </Card>
+              </div>
             </div>
           </div>
         </div>
