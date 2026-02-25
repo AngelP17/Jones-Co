@@ -104,21 +104,21 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="relative overflow-hidden bg-[#10131c] pb-20 pt-28 text-white">
-        <div className="container relative mx-auto min-h-[calc(100vh-8rem)] px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto flex h-full max-w-5xl flex-col justify-center text-center">
-            <h1 className="mb-5 text-5xl font-semibold leading-[1.04] sm:text-6xl md:text-7xl">
+      <section className="relative flex min-h-screen overflow-hidden bg-[#10131c] text-white">
+        <div className="container relative mx-auto flex w-full px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto flex w-full max-w-5xl flex-col justify-center pt-16 text-center sm:pt-20">
+            <h1 className="mb-7 text-6xl font-semibold leading-[1.04] sm:text-7xl md:text-8xl">
               <span className="font-hero block text-[#f2ab62]">
                 Big-Agency Quality.
               </span>
               <span className="block">Small-Town Service.</span>
             </h1>
-            <p className="mx-auto mb-3 max-w-2xl text-lg text-white/85">
+            <p className="mx-auto mb-5 max-w-2xl text-lg text-white/85">
               I help Arkansas businesses look professional online through
               websites, social media, marketing materials, and content that
               connects with your customers.
             </p>
-            <p className="mb-8 text-sm font-semibold tracking-wide text-[#9ad7cd]">
+            <p className="mb-10 text-sm font-semibold tracking-wide text-[#9ad7cd]">
               Your Arkansas neighbor • Serving businesses statewide
             </p>
 
@@ -140,7 +140,7 @@ const Home = () => {
               </Button>
             </div>
 
-            <div className="grid gap-3 text-left sm:grid-cols-2">
+            <div className="mx-auto grid w-full max-w-4xl gap-4 text-left sm:grid-cols-2">
               {credentials.map((item, index) => (
                 <div
                   key={index}
@@ -218,7 +218,7 @@ const Home = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={servicesRef}
-            className={`transition-all duration-300 ${
+            className={`transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none ${
               servicesVisible
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-2'
@@ -235,13 +235,13 @@ const Home = () => {
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className={`transition-all duration-300 ${
+                className={`transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none ${
                   servicesVisible
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-2'
                 }`}
                 style={{
-                  transitionDelay: servicesVisible ? `${index * 40}ms` : '0ms',
+                  transitionDelay: servicesVisible ? `${index * 55}ms` : '0ms',
                 }}
               >
                 <Card className="group h-full bg-white transition-shadow hover:shadow-lg">
