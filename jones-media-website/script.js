@@ -292,7 +292,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Intersection Observer for fade-in animations
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -309,25 +308,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }, observerOptions);
 
   // Observe elements with fade-in class
-  document.querySelectorAll('.service-card, .card, .testimonial-card, .value-card, .hero-feature-card').forEach((el) => {
-    if (prefersReducedMotion) {
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-      return;
-    }
-
+  document.querySelectorAll('.service-card, .card, .testimonial-card, .value-card').forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(3px)';
-    el.style.transition = 'opacity 300ms ease, transform 300ms ease';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(el);
-  });
-
-  document.querySelectorAll('.service-card').forEach((el, index) => {
-    el.style.transitionDelay = `${index * 40}ms`;
-  });
-
-  document.querySelectorAll('.hero-feature-card').forEach((el, index) => {
-    el.style.transitionDelay = `${index * 40}ms`;
   });
 
   // Add CSS for fade-in-visible
@@ -394,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Console welcome message
-  console.log('%cWelcome to Jones & Co. Media!', 'font-size: 20px; font-weight: bold; color: #e07a5f;');
+  console.log('%c👋 Welcome to Jones & Co. Media!', 'font-size: 20px; font-weight: bold; color: #e07a5f;');
   console.log('%cProfessional marketing solutions for Arkansas businesses.', 'font-size: 14px; color: #64748b;');
 });
 

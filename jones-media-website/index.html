@@ -31,7 +31,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
   
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
@@ -82,7 +81,7 @@
           <a href="about.html" class="nav-link">About</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </nav>
-        <a href="contact.html" class="btn btn-primary nav-cta premium-nav-cta">Get Started</a>
+        <a href="contact.html" class="btn btn-primary nav-cta">Get Started</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
@@ -124,46 +123,69 @@
           Contact
         </a>
       </nav>
-      <a href="contact.html" class="btn btn-primary mobile-cta premium-nav-cta">Get Started</a>
+      <a href="contact.html" class="btn btn-primary mobile-cta">Get Started</a>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero" role="banner">
+    <div class="hero-bg">
+      <div class="hero-circle hero-circle-1" aria-hidden="true"></div>
+      <div class="hero-circle hero-circle-2" aria-hidden="true"></div>
+    </div>
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">
-          <span class="hero-title-accent">Big-Agency Quality.</span>
-          <span class="hero-title-main">Small-Town Service.</span>
-        </h1>
-        <p class="hero-subtitle">I help Arkansas businesses look professional online through websites, social media, marketing materials, and content that connects with your customers.</p>
+        <p class="hero-kicker">Arkansas Marketing Studio</p>
+        <div class="hero-usp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          Trusted by 50+ Arkansas Businesses
+        </div>
+        <h1 class="hero-title">Transforming Your Business with <span class="text-primary">Tailored Marketing</span> Solutions</h1>
+        <p class="hero-subtitle">Helping Arkansas businesses grow online with professional websites, social media, and content that actually works.</p>
         <p class="hero-location">
-          Your Arkansas neighbor • Serving businesses statewide
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          Based in Harrison & Fayetteville • Serving all of Arkansas
         </p>
         <div class="hero-buttons">
           <a href="contact.html" class="btn btn-primary btn-lg">
-            Get Started
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Get Your Free Consultation
           </a>
           <a href="services.html" class="btn btn-outline btn-lg">
-            View Services
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            Explore Services
           </a>
         </div>
-        <div class="hero-features">
-          <div class="hero-feature-card">
-            <svg class="hero-feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <p>Arkansas-based support with statewide service</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value">50+</div>
+            <div class="hero-stat-label">Happy Clients</div>
           </div>
-          <div class="hero-feature-card">
-            <svg class="hero-feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-            <p>Editorial, agency, and strategic content experience for local brands</p>
+          <div class="hero-stat">
+            <div class="hero-stat-value">30K+</div>
+            <div class="hero-stat-label">People Reached</div>
           </div>
-          <div class="hero-feature-card">
-            <svg class="hero-feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-            <p>Clear communication, quick turnarounds, and practical recommendations</p>
+          <div class="hero-stat">
+            <div class="hero-stat-value">3+</div>
+            <div class="hero-stat-label">Years Experience</div>
           </div>
-          <div class="hero-feature-card">
-            <svg class="hero-feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            <p>Bilingual content support for businesses serving diverse communities</p>
+          <div class="hero-stat">
+            <div class="hero-stat-value">100%</div>
+            <div class="hero-stat-label">Arkansas-Based</div>
+          </div>
+        </div>
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Secure & Reliable
+          </div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2-Week Delivery
+          </div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+            No Long-Term Contracts
           </div>
         </div>
       </div>

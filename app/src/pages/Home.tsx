@@ -21,6 +21,7 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
+import HeroScene from '@/components/HeroScene';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const credentials = [
@@ -104,52 +105,61 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="relative flex min-h-[100svh] items-start overflow-hidden bg-[linear-gradient(135deg,#151922_0%,#1e1917_45%,#251a16_100%)] pb-20 pt-32 text-white lg:pt-[250px]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(255,183,94,0.08),transparent_48%),radial-gradient(circle_at_80%_85%,rgba(175,110,63,0.14),transparent_52%)]" />
+      <section className="relative overflow-hidden bg-[#10131c] pb-24 pt-28 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(242,171,98,0.22),transparent_45%),radial-gradient(circle_at_85%_75%,rgba(137,208,197,0.18),transparent_45%)]" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="font-general mx-auto flex max-w-6xl flex-col items-center gap-10 text-center">
-            <h1 className="mx-auto max-w-5xl bg-[linear-gradient(144.5deg,#ffffff_30%,#fbbf24_70%)] bg-clip-text text-[40px] font-semibold leading-[1.02] tracking-[-0.02em] text-transparent sm:text-6xl md:text-[64px] lg:text-[72px]">
-              <span className="block">Big-Agency Quality.</span>
-              <span className="mt-2 block">Small-Town Service.</span>
-            </h1>
-            <p className="mx-auto max-w-[680px] text-[15px] leading-relaxed text-white/75 sm:text-base">
-              I help Arkansas businesses look professional online through
-              websites, social media, marketing materials, and content that
-              connects with your customers.
-            </p>
-            <p className="text-sm font-semibold tracking-wide text-[#f2c793]">
-              Your Arkansas neighbor • Serving businesses statewide
-            </p>
+          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur">
+                Arkansas Marketing Studio
+              </span>
+              <h1 className="mb-5 text-4xl font-semibold leading-[1.08] sm:text-5xl md:text-6xl">
+                <span className="font-hero block text-[#f2ab62]">
+                  Big-Agency Quality.
+                </span>
+                <span className="block">Small-Town Service.</span>
+              </h1>
+              <p className="mb-3 max-w-2xl text-lg text-white/85">
+                I help Arkansas businesses look professional online through
+                websites, social media, marketing materials, and content that
+                connects with your customers.
+              </p>
+              <p className="mb-8 text-sm font-semibold tracking-wide text-[#9ad7cd]">
+                Your Arkansas neighbor • Serving businesses statewide
+              </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Button
-                onClick={() => handleNavClick('/contact')}
-                size="lg"
-                className="premium-pill-primary min-h-11 px-8 font-general text-[15px]"
-              >
-                Get Started <IconArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button
-                onClick={() => handleNavClick('/services')}
-                size="lg"
-                variant="ghost"
-                className="premium-pill-secondary min-h-11 px-8 font-general text-[15px]"
-              >
-                View Services
-              </Button>
-            </div>
-
-            <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
-              {credentials.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex min-h-[128px] items-start gap-3 rounded-xl border border-white/12 bg-white/6 p-5 text-left transition-all duration-300 ease-out active:scale-[0.97] lg:hover:-translate-y-[0.5px] hover:shadow-[0_16px_28px_rgba(7,9,15,0.35)]"
+              <div className="mb-8 flex flex-wrap gap-4">
+                <Button
+                  onClick={() => handleNavClick('/contact')}
+                  size="lg"
+                  className="bg-[#f2ab62] text-[#10131c] hover:bg-[#f8ba79]"
                 >
-                  <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#9ad7cd]" />
-                  <p className="text-sm leading-relaxed text-white/85">{item.text}</p>
-                </div>
-              ))}
+                  Get Started <IconArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+                <Button
+                  onClick={() => handleNavClick('/services')}
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 bg-white/5 text-white hover:bg-white/12"
+                >
+                  View Services
+                </Button>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {credentials.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 rounded-xl border border-white/12 bg-white/6 p-3 backdrop-blur"
+                  >
+                    <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#9ad7cd]" />
+                    <p className="text-sm leading-relaxed text-white/85">{item.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            <HeroScene />
           </div>
         </div>
       </section>
@@ -163,8 +173,8 @@ const Home = () => {
             <div
               className={`lg:col-span-3 transition-all duration-300 ${
                 contextVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-[3px]'
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 -translate-x-3'
               }`}
             >
               <h2 className="mb-6 font-display text-3xl font-bold text-foreground md:text-4xl">
@@ -189,11 +199,11 @@ const Home = () => {
             <div
               className={`lg:col-span-2 transition-all duration-300 delay-75 ${
                 contextVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-[3px]'
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 translate-x-3'
               }`}
             >
-              <Card className="border-primary/20 bg-accent transition-all duration-300 ease-out active:scale-[0.97] lg:hover:-translate-y-[0.5px] hover:shadow-lg">
+              <Card className="border-primary/20 bg-accent">
                 <CardContent className="p-6">
                   <h3 className="mb-4 font-display text-lg font-semibold text-foreground">
                     Quick Snapshot
@@ -220,7 +230,7 @@ const Home = () => {
             className={`transition-all duration-300 ${
               servicesVisible
                 ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-[3px]'
+                : 'opacity-0 translate-y-2'
             }`}
           >
             <h2 className="mb-2 text-center font-display text-3xl font-bold text-foreground md:text-4xl">
@@ -237,13 +247,13 @@ const Home = () => {
                 className={`transition-all duration-300 ${
                   servicesVisible
                     ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-[3px]'
+                    : 'opacity-0 translate-y-2'
                 }`}
                 style={{
                   transitionDelay: servicesVisible ? `${index * 40}ms` : '0ms',
                 }}
               >
-                <Card className="group h-full bg-white transition-all duration-300 ease-out active:scale-[0.97] lg:hover:-translate-y-[0.5px] hover:shadow-lg">
+                <Card className="group h-full bg-white transition-shadow hover:shadow-lg">
                   <CardContent className="flex h-full flex-col items-start p-6">
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                       <service.icon className="h-6 w-6 text-primary" />
@@ -275,7 +285,7 @@ const Home = () => {
           className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 transition-all duration-300 ${
             spanishVisible
               ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-[3px]'
+              : 'opacity-0 translate-y-2'
           }`}
         >
           <IconLanguage className="mx-auto mb-4 h-10 w-10 text-primary" />
@@ -289,7 +299,7 @@ const Home = () => {
           </p>
           <Button
             onClick={() => handleNavClick('/contact')}
-            className="min-h-11 bg-primary transition-all duration-300 ease-out active:scale-[0.97] lg:hover:-translate-y-[0.5px] hover:bg-primary/90"
+            className="bg-primary hover:bg-primary/90"
           >
             Contáctenos
           </Button>
@@ -302,7 +312,7 @@ const Home = () => {
           className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 transition-all duration-300 ${
             ctaVisible
               ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-[3px]'
+              : 'opacity-0 translate-y-2'
           }`}
         >
           <h2 className="mb-4 font-display text-3xl font-bold md:text-4xl">
@@ -332,7 +342,7 @@ const Home = () => {
             <Button
               onClick={() => handleNavClick('/contact')}
               size="lg"
-              className="min-h-11 bg-primary transition-all duration-300 ease-out active:scale-[0.97] lg:hover:-translate-y-[0.5px] hover:bg-primary/90"
+              className="bg-primary hover:bg-primary/90"
             >
               Schedule a Call
             </Button>
@@ -340,7 +350,7 @@ const Home = () => {
               onClick={() => handleNavClick('/bundles')}
               variant="outline"
               size="lg"
-              className="min-h-11 border-background/50 bg-transparent text-background transition-all duration-300 ease-out active:scale-[0.97] lg:hover:-translate-y-[0.5px] hover:bg-background/10 hover:text-background"
+              className="border-background/50 bg-transparent text-background hover:bg-background/10 hover:text-background"
             >
               View Pricing
             </Button>
@@ -354,7 +364,7 @@ const Home = () => {
           className={`container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
             faqVisible
               ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-[3px]'
+              : 'opacity-0 translate-y-2'
           }`}
         >
           <h2 className="mb-8 text-center font-display text-3xl font-bold text-foreground">
