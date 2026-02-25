@@ -201,9 +201,6 @@ const StudentServices = () => {
   const { ref: processRef, isVisible: processVisible } = useIntersectionObserver();
   const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
 
-  const revealBaseClass =
-    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
-
   const handleGetStarted = () => {
     navigate('/contact');
     window.scrollTo(0, 0);
@@ -247,11 +244,7 @@ const StudentServices = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={servicesRef}
-            className={`${revealBaseClass} ${
-              servicesVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-2'
-            }`}
+            className={`reveal-fade-up ${servicesVisible ? 'visible' : ''}`}
           >
             <h2 className="mb-10 font-display text-3xl font-bold text-foreground">
               Services Overview
@@ -262,14 +255,9 @@ const StudentServices = () => {
             {serviceGroups.map((group, groupIndex) => (
               <div
                 key={group.id}
-                className={`${revealBaseClass} delay-[60ms] ${
-                  servicesVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${groupIndex + 1} ${
+                  servicesVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: servicesVisible ? `${(groupIndex + 1) * 100}ms` : '0ms',
-                }}
               >
                 <div className="mb-5 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
@@ -343,11 +331,7 @@ const StudentServices = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={bundlesRef}
-            className={`${revealBaseClass} ${
-              bundlesVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-2'
-            }`}
+            className={`reveal-fade-up ${bundlesVisible ? 'visible' : ''}`}
           >
             <h2 className="mb-8 font-display text-3xl font-bold text-foreground">
               Popular Bundles
@@ -358,14 +342,9 @@ const StudentServices = () => {
             {bundles.map((bundle, index) => (
               <div
                 key={bundle.name}
-                className={`${revealBaseClass} delay-[60ms] ${
-                  bundlesVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${index + 1} ${
+                  bundlesVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: bundlesVisible ? `${(index + 1) * 60}ms` : '0ms',
-                }}
               >
                 <Card className="border-primary/30 h-full">
                 <CardHeader>
@@ -397,18 +376,13 @@ const StudentServices = () => {
           <h2 className="mb-8 font-display text-3xl font-bold text-foreground">
             Why Work With Me?
           </h2>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div ref={whyRef} className="grid gap-6 md:grid-cols-2">
             {reasons.map((reason, index) => (
               <div
                 key={reason.title}
-                className={`${revealBaseClass} delay-[60ms] ${
-                  whyVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${index + 1} ${
+                  whyVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: whyVisible ? `${(index + 1) * 60}ms` : '0ms',
-                }}
               >
                 <Card className="bg-accent h-full">
                   <CardContent className="p-6">
@@ -429,18 +403,13 @@ const StudentServices = () => {
       <section className="bg-foreground py-16 text-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 font-display text-3xl font-bold">How It Works</h2>
-          <div className="grid gap-5 md:grid-cols-2">
+          <div ref={processRef} className="grid gap-5 md:grid-cols-2">
             {processSteps.map((step, index) => (
               <div
                 key={step.title}
-                className={`${revealBaseClass} delay-[60ms] ${
-                  processVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${index + 1} ${
+                  processVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: processVisible ? `${(index + 1) * 60}ms` : '0ms',
-                }}
               >
                 <Card className="border-white/15 bg-white/5 text-white h-full">
                   <CardContent className="p-6">
@@ -460,7 +429,12 @@ const StudentServices = () => {
       </section>
 
       <section className="py-16">
-        <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+        <div
+          ref={ctaRef}
+          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 reveal-fade-up ${
+            ctaVisible ? 'visible' : ''
+          }`}
+        >
           <h2 className="mb-4 font-display text-2xl font-bold text-foreground">
             Ready to apply with confidence?
           </h2>

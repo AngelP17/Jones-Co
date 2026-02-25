@@ -81,9 +81,6 @@ const About = () => {
   const { ref: educationRef, isVisible: educationVisible } = useIntersectionObserver();
   const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
 
-  const revealBaseClass =
-    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -111,14 +108,9 @@ const About = () => {
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className={`${revealBaseClass} ${
-                  statsVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${index + 1} ${
+                  statsVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: statsVisible ? `${index * 60}ms` : '0ms',
-                }}
               >
                 <Card className="bg-white shadow-lg">
                   <CardContent className="p-6 text-center">
@@ -140,11 +132,7 @@ const About = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={storyRef} className="grid gap-12 lg:grid-cols-2 items-center">
             <div
-              className={`${revealBaseClass} ${
-                storyVisible
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-0 -translate-x-3'
-              }`}
+              className={`reveal-fade-left ${storyVisible ? 'visible' : ''}`}
             >
               <h2 className="font-display text-3xl font-bold mb-6">
                 My Story
@@ -180,10 +168,8 @@ const About = () => {
               </div>
             </div>
             <div
-              className={`bg-accent rounded-2xl p-8 ${revealBaseClass} delay-[60ms] ${
-                storyVisible
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-0 translate-x-3'
+              className={`bg-accent rounded-2xl p-8 reveal-fade-right stagger-1 ${
+                storyVisible ? 'visible' : ''
               }`}
             >
               <h3 className="font-display text-xl font-bold mb-6">
@@ -216,11 +202,7 @@ const About = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={valuesRef}
-            className={`${revealBaseClass} ${
-              valuesVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-2'
-            }`}
+            className={`reveal-fade-up ${valuesVisible ? 'visible' : ''}`}
           >
             <h2 className="font-display text-3xl font-bold text-center mb-4">
               Our Values
@@ -233,14 +215,9 @@ const About = () => {
             {values.map((value, index) => (
               <div
                 key={value.title}
-                className={`${revealBaseClass} ${
-                  valuesVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${index + 1} ${
+                  valuesVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: valuesVisible ? `${index * 60}ms` : '0ms',
-                }}
               >
                 <Card className="bg-white">
                   <CardContent className="p-6">
@@ -264,11 +241,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto">
             <div
               ref={educationRef}
-              className={`${revealBaseClass} ${
-                educationVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-2'
-              }`}
+              className={`reveal-fade-up ${educationVisible ? 'visible' : ''}`}
             >
               <h2 className="font-display text-3xl font-bold text-center mb-8">
                 Education & Background
@@ -276,10 +249,8 @@ const About = () => {
             </div>
             <div className="space-y-6">
               <div
-                className={`${revealBaseClass} delay-[60ms] ${
-                  educationVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-1 ${
+                  educationVisible ? 'visible' : ''
                 }`}
               >
                 <Card>
@@ -303,10 +274,8 @@ const About = () => {
               </Card>
               </div>
               <div
-                className={`${revealBaseClass} delay-[120ms] ${
-                  educationVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-2 ${
+                  educationVisible ? 'visible' : ''
                 }`}
               >
                 <Card>
@@ -330,10 +299,8 @@ const About = () => {
               </Card>
               </div>
               <div
-                className={`${revealBaseClass} delay-[180ms] ${
-                  educationVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-3 ${
+                  educationVisible ? 'visible' : ''
                 }`}
               >
                 <Card>

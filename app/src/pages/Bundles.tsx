@@ -78,9 +78,6 @@ const Bundles = () => {
   const { ref: comparisonRef, isVisible: comparisonVisible } = useIntersectionObserver();
   const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
 
-  const revealBaseClass =
-    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
-
   const handleNavClick = (path: string) => {
     navigate(path);
     window.scrollTo(0, 0);
@@ -112,14 +109,9 @@ const Bundles = () => {
             {bundles.map((bundle, index) => (
               <div
                 key={bundle.name}
-                className={`${revealBaseClass} ${
-                  bundlesVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${index + 1} ${
+                  bundlesVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: bundlesVisible ? `${index * 80}ms` : '0ms',
-                }}
               >
                 <Card
                   className={`relative flex flex-col h-full ${
@@ -204,10 +196,8 @@ const Bundles = () => {
       <section className="bg-muted py-16">
         <div
           ref={comparisonRef}
-          className={`container mx-auto px-4 sm:px-6 lg:px-8 ${revealBaseClass} ${
-            comparisonVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-2'
+          className={`container mx-auto px-4 sm:px-6 lg:px-8 reveal-fade-up ${
+            comparisonVisible ? 'visible' : ''
           }`}
         >
           <h2 className="font-display text-2xl font-bold text-center mb-8">
@@ -297,10 +287,8 @@ const Bundles = () => {
       <section className="py-16">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 sm:px-6 lg:px-8 ${revealBaseClass} ${
-            ctaVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-2'
+          className={`container mx-auto px-4 sm:px-6 lg:px-8 reveal-fade-up ${
+            ctaVisible ? 'visible' : ''
           }`}
         >
           <Card className="bg-foreground text-background">

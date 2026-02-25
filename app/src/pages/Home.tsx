@@ -100,9 +100,6 @@ const Home = () => {
     window.scrollTo(0, 0);
   };
 
-  const revealBaseClass =
-    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -110,7 +107,7 @@ const Home = () => {
       <section className="relative flex min-h-screen overflow-hidden bg-foreground text-white">
         <div className="container relative mx-auto flex w-full px-4 sm:px-6 lg:px-8">
           <div className="mx-auto flex w-full max-w-5xl flex-col justify-center pt-16 text-center sm:pt-20">
-            <h1 className="mb-7 text-6xl font-semibold leading-[1.04] sm:text-7xl md:text-8xl">
+            <h1 className="animate-smooth mb-7 text-6xl font-semibold leading-[1.04] sm:text-7xl md:text-8xl">
               <span className="font-hero block text-[#f2ab62]">
                 Big-Agency Quality.
               </span>
@@ -165,10 +162,8 @@ const Home = () => {
             className="grid items-start gap-12 lg:grid-cols-5"
           >
             <div
-              className={`lg:col-span-3 ${revealBaseClass} ${
-                contextVisible
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-0 -translate-x-3'
+              className={`lg:col-span-3 reveal-fade-left ${
+                contextVisible ? 'visible' : ''
               }`}
             >
               <h2 className="mb-6 font-display text-3xl font-bold text-foreground md:text-4xl">
@@ -191,10 +186,8 @@ const Home = () => {
               </div>
             </div>
             <div
-              className={`lg:col-span-2 ${revealBaseClass} delay-[60ms] ${
-                contextVisible
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-0 translate-x-3'
+              className={`lg:col-span-2 reveal-fade-right stagger-1 ${
+                contextVisible ? 'visible' : ''
               }`}
             >
               <Card className="border-primary/20 bg-accent">
@@ -221,11 +214,7 @@ const Home = () => {
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div
             ref={servicesRef}
-            className={`${revealBaseClass} ${
-              servicesVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-2'
-            }`}
+            className={`reveal-fade-up ${servicesVisible ? 'visible' : ''}`}
           >
             <h2 className="mb-2 text-center font-display text-3xl font-bold text-foreground md:text-4xl">
               What We Do
@@ -238,14 +227,9 @@ const Home = () => {
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className={`${revealBaseClass} ${
-                  servicesVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${index + 1} ${
+                  servicesVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: servicesVisible ? `${index * 55}ms` : '0ms',
-                }}
               >
                 <Card className="group h-full bg-white transition-shadow hover:shadow-lg">
                   <CardContent className="flex h-full flex-col items-start p-6">
@@ -276,10 +260,8 @@ const Home = () => {
       <section className="border-y border-primary/20 bg-accent py-20 sm:py-24">
         <div
           ref={spanishRef}
-          className={`container mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8 ${revealBaseClass} ${
-            spanishVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-2'
+          className={`container mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8 reveal-fade-up ${
+            spanishVisible ? 'visible' : ''
           }`}
         >
           <IconLanguage className="mx-auto mb-4 h-10 w-10 text-primary" />
@@ -303,10 +285,8 @@ const Home = () => {
       <section className="bg-foreground py-20 text-background sm:py-24">
         <div
           ref={ctaRef}
-          className={`container mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8 ${revealBaseClass} ${
-            ctaVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-2'
+          className={`container mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8 reveal-fade-up ${
+            ctaVisible ? 'visible' : ''
           }`}
         >
           <h2 className="mb-4 font-display text-3xl font-bold md:text-4xl">
@@ -355,10 +335,8 @@ const Home = () => {
       <section className="py-20 sm:py-24">
         <div
           ref={faqRef}
-          className={`container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 ${revealBaseClass} ${
-            faqVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-2'
+          className={`container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 reveal-fade-up ${
+            faqVisible ? 'visible' : ''
           }`}
         >
           <h2 className="mb-8 text-center font-display text-3xl font-bold text-foreground">

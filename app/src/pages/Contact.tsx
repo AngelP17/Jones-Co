@@ -69,9 +69,6 @@ const Contact = () => {
   const { ref: formRef, isVisible: formVisible } = useIntersectionObserver();
   const { ref: locationsRef, isVisible: locationsVisible } = useIntersectionObserver();
 
-  const revealBaseClass =
-    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -104,14 +101,9 @@ const Contact = () => {
             {contactInfo.map((item, index) => (
               <div
                 key={item.title}
-                className={`${revealBaseClass} ${
-                  contactCardsVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                className={`reveal-fade-up stagger-${index + 1} ${
+                  contactCardsVisible ? 'visible' : ''
                 }`}
-                style={{
-                  transitionDelay: contactCardsVisible ? `${index * 60}ms` : '0ms',
-                }}
               >
                 <Card className="bg-white shadow-lg">
                   <CardContent className="p-6">
@@ -143,11 +135,7 @@ const Contact = () => {
           <div ref={formRef} className="grid gap-12 lg:grid-cols-2">
             {/* Form */}
             <div
-              className={`${revealBaseClass} ${
-                formVisible
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-0 -translate-x-3'
-              }`}
+              className={`reveal-fade-left ${formVisible ? 'visible' : ''}`}
             >
               <h2 className="font-display text-2xl font-bold mb-6">
                 Send a Message
@@ -252,11 +240,7 @@ const Contact = () => {
 
             {/* Info */}
             <div
-              className={`${revealBaseClass} delay-[60ms] ${
-                formVisible
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-0 translate-x-3'
-              }`}
+              className={`reveal-fade-right stagger-1 ${formVisible ? 'visible' : ''}`}
             >
               <h2 className="font-display text-2xl font-bold mb-6">
                 Schedule a Call
@@ -327,11 +311,7 @@ const Contact = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={locationsRef}
-            className={`${revealBaseClass} ${
-              locationsVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-2'
-            }`}
+            className={`reveal-fade-up ${locationsVisible ? 'visible' : ''}`}
           >
             <h2 className="font-display text-2xl font-bold text-center mb-8">
               Serving Arkansas
@@ -339,10 +319,8 @@ const Contact = () => {
           </div>
           <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
             <div
-              className={`${revealBaseClass} delay-[60ms] ${
-                locationsVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-2'
+              className={`reveal-fade-up stagger-1 ${
+                locationsVisible ? 'visible' : ''
               }`}
             >
               <Card>
@@ -358,10 +336,8 @@ const Contact = () => {
               </Card>
             </div>
             <div
-              className={`${revealBaseClass} delay-[120ms] ${
-                locationsVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-2'
+              className={`reveal-fade-up stagger-2 ${
+                locationsVisible ? 'visible' : ''
               }`}
             >
               <Card>
@@ -378,10 +354,8 @@ const Contact = () => {
             </div>
           </div>
           <div
-            className={`${revealBaseClass} delay-[180ms] ${
-              locationsVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-2'
+            className={`reveal-fade-up stagger-3 ${
+              locationsVisible ? 'visible' : ''
             }`}
           >
             <p className="text-center text-muted-foreground mt-6">

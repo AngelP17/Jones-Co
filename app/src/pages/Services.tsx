@@ -273,9 +273,6 @@ const Services = () => {
   const { ref: tabsRef, isVisible: tabsVisible } = useIntersectionObserver();
   const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
 
-  const revealBaseClass =
-    'transition-all duration-[380ms] ease-out motion-reduce:transform-none motion-reduce:transition-none';
-
   const handleContact = () => {
     navigate('/contact');
     window.scrollTo(0, 0);
@@ -307,11 +304,7 @@ const Services = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={tabsRef}
-            className={`${revealBaseClass} ${
-              tabsVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-2'
-            }`}
+            className={`reveal-fade-up ${tabsVisible ? 'visible' : ''}`}
           >
             <Tabs
               value={activeTab}
@@ -409,10 +402,8 @@ const Services = () => {
       <section className="py-16">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 ${revealBaseClass} ${
-            ctaVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-2'
+          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 reveal-fade-up ${
+            ctaVisible ? 'visible' : ''
           }`}
         >
           <h2 className="mb-4 font-display text-2xl font-bold">
