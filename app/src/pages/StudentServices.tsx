@@ -398,17 +398,28 @@ const StudentServices = () => {
             Why Work With Me?
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
-            {reasons.map((reason) => (
-              <Card key={reason.title} className="bg-accent">
-                <CardContent className="p-6">
-                  <h3 className="mb-2 font-display text-xl font-semibold text-foreground">
-                    {reason.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {reason.body}
-                  </p>
-                </CardContent>
-              </Card>
+            {reasons.map((reason, index) => (
+              <div
+                key={reason.title}
+                className={`${revealBaseClass} delay-[60ms] ${
+                  whyVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{
+                  transitionDelay: whyVisible ? `${(index + 1) * 60}ms` : '0ms',
+                }}
+              >
+                <Card className="bg-accent h-full">
+                  <CardContent className="p-6">
+                    <h3 className="mb-2 font-display text-xl font-semibold text-foreground">
+                      {reason.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {reason.body}
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
@@ -420,17 +431,28 @@ const StudentServices = () => {
           <h2 className="mb-8 font-display text-3xl font-bold">How It Works</h2>
           <div className="grid gap-5 md:grid-cols-2">
             {processSteps.map((step, index) => (
-              <Card key={step.title} className="border-white/15 bg-white/5 text-white">
-                <CardContent className="p-6">
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-primary">
-                    Step {index + 1}
-                  </p>
-                  <h3 className="mb-2 font-display text-xl font-semibold text-white">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-white/75">{step.detail}</p>
-                </CardContent>
-              </Card>
+              <div
+                key={step.title}
+                className={`${revealBaseClass} delay-[60ms] ${
+                  processVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{
+                  transitionDelay: processVisible ? `${(index + 1) * 60}ms` : '0ms',
+                }}
+              >
+                <Card className="border-white/15 bg-white/5 text-white h-full">
+                  <CardContent className="p-6">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-primary">
+                      Step {index + 1}
+                    </p>
+                    <h3 className="mb-2 font-display text-xl font-semibold text-white">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-white/75">{step.detail}</p>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
