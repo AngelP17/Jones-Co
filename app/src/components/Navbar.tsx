@@ -38,7 +38,7 @@ const Navbar = () => {
             </span>
             <span className="font-hero text-xl text-primary leading-[1]">&</span>
             <span className="font-display text-lg font-light tracking-wide text-foreground/60">
-              Co. Media
+              Co.
             </span>
           </button>
 
@@ -89,7 +89,7 @@ const Navbar = () => {
                     </span>
                     <span className="font-hero text-xl text-primary leading-[1]">&</span>
                     <span className="font-display text-lg font-light tracking-wide text-foreground/60">
-                      Co. Media
+                      Co.
                     </span>
                   </button>
                 </div>

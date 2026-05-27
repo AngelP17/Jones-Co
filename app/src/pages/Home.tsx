@@ -96,7 +96,7 @@ const Home = () => {
           <div className="grid min-h-[calc(100dvh-4rem)] items-center gap-8 py-10 lg:min-h-[calc(100dvh-4.5rem)] lg:grid-cols-12 lg:gap-6 lg:py-0">
             <div className="flex flex-col justify-center lg:col-span-7 xl:col-span-6">
               <p className="hero-intro hero-intro-1 editorial-label mb-5">
-                Jones & Co. Media
+                Jones & Co.
               </p>
               <h1 className="hero-intro hero-intro-1 mb-5 font-display text-[2.75rem] font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
                 <span className="font-hero block text-primary leading-[1.12] pb-1">

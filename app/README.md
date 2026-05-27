@@ -1,4 +1,4 @@
-# Jones & Co. Media Web App
+# Jones & Co. Web App
 
 Marketing and student-services website built with React, TypeScript, Vite, Tailwind CSS, and Radix/shadcn UI primitives.
 
@@ -24,6 +24,10 @@ npm run preview           # serve dist/ through Vite preview
 ```
 
 No test runner or formatter command is configured in `package.json`.
+
+## Deployment
+
+Cloudflare Workers static asset deployment is configured in `../wrangler.toml`. From the repository root, `npx wrangler deploy` runs the clean install and Vite production build in this directory, then publishes `app/dist/`.
 
 ## Routes
 
