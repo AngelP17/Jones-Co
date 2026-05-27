@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import {
   Accordion,
   AccordionContent,
@@ -11,9 +10,7 @@ import {
   IconBrandInstagram,
   IconLanguage,
   IconMapPin,
-  IconMessages,
-  IconNews,
-  IconPhoneCall,
+  IconPhone,
   IconWorldWww,
   IconWriting,
   IconMail,
@@ -23,46 +20,37 @@ import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
-const credentials = [
-  { icon: IconMapPin, text: 'Arkansas-based support with statewide service' },
-  {
-    icon: IconNews,
-    text: 'Editorial, agency, and strategic content experience for local brands',
-  },
-  {
-    icon: IconMessages,
-    text: 'Clear communication, quick turnarounds, and practical recommendations',
-  },
-  {
-    icon: IconLanguage,
-    text: 'Bilingual content support for businesses serving diverse communities',
-  },
+const trustLedger = [
+  { number: '01', label: 'Arkansas-based', text: 'Statewide service with local roots in Harrison and Fayetteville' },
+  { number: '02', label: 'Agency-trained', text: 'Editorial, strategic, and content experience from professional practice' },
+  { number: '03', label: 'Direct access', text: 'Clear communication, quick turnarounds, and practical recommendations' },
+  { number: '04', label: 'Bilingual', text: 'Spanish-language content support for businesses serving diverse communities' },
 ];
 
-const services = [
+const serviceIndex = [
   {
+    number: '01',
     title: 'Websites',
     desc: 'Professional websites that are clear, modern, and easy for your customers to navigate.',
     icon: IconWorldWww,
-    path: '/services',
   },
   {
+    number: '02',
     title: 'Social Media',
     desc: 'Consistent posting, active engagement, and content calendars built around your goals.',
     icon: IconBrandInstagram,
-    path: '/services',
   },
   {
+    number: '03',
     title: 'Marketing Materials',
     desc: 'Print and digital assets that keep your brand polished across every touchpoint.',
     icon: IconWriting,
-    path: '/services',
   },
   {
+    number: '04',
     title: 'Spanish Services',
     desc: 'Bilingual content and culturally grounded messaging for Arkansas audiences.',
     icon: IconLanguage,
-    path: '/services',
   },
 ];
 
@@ -77,7 +65,7 @@ const faqs = [
   },
   {
     q: 'Do you require contracts?',
-    a: "For one-time projects, no. For monthly services, yes, but they are month-to-month and can be canceled anytime.",
+    a: 'For one-time projects, no. For monthly services, yes, but they are month-to-month and can be canceled anytime.',
   },
   {
     q: 'Can you help after launch?',
@@ -88,9 +76,8 @@ const faqs = [
 const Home = () => {
   const { navigate } = useRouter();
 
-  // Scroll reveal hooks for different sections
+  const { ref: trustRef, isVisible: trustVisible } = useIntersectionObserver();
   const { ref: servicesRef, isVisible: servicesVisible } = useIntersectionObserver();
-  const { ref: contextRef, isVisible: contextVisible } = useIntersectionObserver();
   const { ref: spanishRef, isVisible: spanishVisible } = useIntersectionObserver();
   const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
   const { ref: faqRef, isVisible: faqVisible } = useIntersectionObserver();
@@ -101,254 +88,277 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-[100dvh] bg-background">
       <Navbar />
 
-      <section className="relative flex min-h-screen overflow-hidden bg-foreground text-white">
-        <div className="container relative mx-auto flex w-full px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto flex w-full max-w-5xl flex-col justify-center pt-16 text-center sm:pt-20">
-            <h1 className="hero-intro hero-intro-1 mb-7 text-6xl font-semibold leading-[1.04] sm:text-7xl md:text-8xl">
-              <span className="font-hero block text-[#f2ab62]">
-                Big-Agency Quality.
-              </span>
-              <span className="block">Small-Town Service.</span>
-            </h1>
-            <p className="hero-intro hero-intro-2 mx-auto mb-5 max-w-2xl text-lg text-white/85">
-              I help Arkansas businesses look professional online through
-              websites, social media, marketing materials, and content that
-              connects with your customers.
-            </p>
-            <p className="hero-intro hero-intro-3 mb-10 text-sm font-semibold tracking-wide text-[#9ad7cd]">
-              Your Arkansas neighbor • Serving businesses statewide
-            </p>
+      <section className="relative min-h-[100dvh] overflow-hidden pt-16 lg:pt-[72px]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid min-h-[calc(100dvh-4rem)] items-center gap-8 py-10 lg:min-h-[calc(100dvh-4.5rem)] lg:grid-cols-12 lg:gap-6 lg:py-0">
+            <div className="flex flex-col justify-center lg:col-span-7 xl:col-span-6">
+              <p className="hero-intro hero-intro-1 editorial-label mb-5">
+                Jones & Co. Media
+              </p>
+              <h1 className="hero-intro hero-intro-1 mb-5 font-display text-[2.75rem] font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
+                <span className="font-hero block text-primary leading-[1.12] pb-1">
+                  Big-agency quality.
+                </span>
+                <span className="block mt-2">Small-town service.</span>
+              </h1>
+              <p className="hero-intro hero-intro-2 mb-7 max-w-[48ch] text-[15px] leading-[1.65] text-muted-foreground lg:text-base">
+                Websites, social media, marketing materials, and content that helps Arkansas businesses look credible online.
+              </p>
+              <div className="hero-intro hero-intro-3 flex flex-wrap gap-3">
+                <Button
+                  onClick={() => handleNavClick('/contact')}
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-7"
+                >
+                  Get Started
+                  <IconArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
+                </Button>
+                <Button
+                  onClick={() => handleNavClick('/services')}
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full px-7 border-foreground/12 hover:bg-foreground/[0.03]"
+                >
+                  View Services
+                </Button>
+              </div>
 
-            <div className="mb-8 flex flex-wrap justify-center gap-4">
-              <Button
-                onClick={() => handleNavClick('/contact')}
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                Get Started <IconArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <div className="hero-intro hero-intro-3 mt-8 flex items-center gap-4 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1.5">
+                  <IconMapPin className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  Harrison & Fayetteville, AR
+                </span>
+                <span className="h-3 w-px bg-border" />
+                <span>Statewide service</span>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center lg:col-span-5 xl:col-span-6">
+              <div className="hero-intro hero-intro-2 relative w-full max-w-lg">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/hero-storefront.jpg`}
+                  alt="A welcoming storefront along a small-town Arkansas sidewalk"
+                  width={760}
+                  height={950}
+                  fetchPriority="high"
+                  loading="eager"
+                  className="h-[28dvh] min-h-[180px] max-h-[240px] w-full rounded-2xl object-cover shadow-md lg:h-auto lg:max-h-none lg:aspect-[4/5]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border py-12 sm:py-16">
+        <div
+          ref={trustRef}
+          className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 reveal-fade-up ${trustVisible ? 'visible' : ''}`}
+        >
+          <div className="grid gap-8 lg:grid-cols-12">
+            <div className="lg:col-span-3">
+              <p className="editorial-label mb-2">The Practice</p>
+              <h2 className="font-display text-xl font-semibold tracking-tight text-foreground">
+                What sets us apart
+              </h2>
+            </div>
+            <div className="lg:col-span-9">
+              <div className="grid gap-6 sm:grid-cols-2">
+                {trustLedger.map((item) => (
+                  <div key={item.number} className="flex gap-4">
+                    <span className="editorial-number mt-0.5 shrink-0">{item.number}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-foreground mb-1">{item.label}</p>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div ref={servicesRef} className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <div className={`lg:col-span-4 reveal-fade-left ${servicesVisible ? 'visible' : ''}`}>
+              <p className="editorial-label mb-3">Services</p>
+              <h2 className="mb-4 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+                What we do
+              </h2>
+              <p className="text-muted-foreground leading-relaxed max-w-[40ch] mb-6">
+                Clear, polished marketing support for businesses across Arkansas.
+              </p>
               <Button
                 onClick={() => handleNavClick('/services')}
-                size="lg"
                 variant="outline"
-                className="border-white/30 bg-white/5 text-white hover:bg-white/12"
+                className="rounded-full border-foreground/12 hover:bg-foreground/[0.03]"
               >
-                View Services
+                View All Services
+                <IconArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
               </Button>
             </div>
 
-            <div className="mx-auto grid w-full max-w-4xl gap-4 text-left sm:grid-cols-2">
-              {credentials.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-3 rounded-xl border border-white/12 bg-white/6 p-3 backdrop-blur"
-                >
-                  <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#9ad7cd]" />
-                  <p className="text-sm leading-relaxed text-white/85">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 sm:py-24">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div
-            ref={contextRef}
-            className="grid items-start gap-12 lg:grid-cols-5"
-          >
-            <div
-              className={`lg:col-span-3 reveal-fade-left ${
-                contextVisible ? 'visible' : ''
-              }`}
-            >
-              <h2 className="mb-6 font-display text-3xl font-bold text-foreground md:text-4xl">
-                Local context, professional execution.
-              </h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Jones & Co. Media is built for Arkansas businesses that want to
-                  look credible online without paying big-city agency retainers.
-                </p>
-                <p>
-                  Every project is designed to be practical: clear messaging,
-                  consistent branding, and content your customers actually want to
-                  read.
-                </p>
-                <p>
-                  You get strategic support with direct communication, fast
-                  feedback loops, and work that reflects your business voice.
-                </p>
-              </div>
-            </div>
-            <div
-              className={`lg:col-span-2 reveal-fade-right stagger-1 ${
-                contextVisible ? 'visible' : ''
-              }`}
-            >
-              <Card className="border-primary/20 bg-accent">
-                <CardContent className="p-6">
-                  <h3 className="mb-4 font-display text-lg font-semibold text-foreground">
-                    Quick Snapshot
-                  </h3>
-                  <div className="space-y-3">
-                    {services.map((item) => (
-                      <div key={item.title} className="flex items-start gap-3">
-                        <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                        <span className="text-sm text-foreground">{item.desc}</span>
+            <div className={`lg:col-span-8 reveal-fade-right stagger-1 ${servicesVisible ? 'visible' : ''}`}>
+              <div className="divide-y divide-border">
+                {serviceIndex.map((service) => (
+                  <div
+                    key={service.number}
+                    className="group flex items-start gap-5 py-6 first:pt-0 last:pb-0"
+                  >
+                    <span className="editorial-number mt-1 shrink-0">{service.number}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 mb-2">
+                        <service.icon className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                        <h3 className="font-display text-lg font-semibold text-foreground">
+                          {service.title}
+                        </h3>
                       </div>
-                    ))}
+                      <p className="text-sm leading-relaxed text-muted-foreground max-w-[55ch]">
+                        {service.desc}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleNavClick('/services')}
+                      className="mt-1 shrink-0 text-primary opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100 focus-visible:opacity-100"
+                      aria-label={`Learn more about ${service.title}`}
+                    >
+                      <IconArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                    </button>
                   </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-muted py-20 sm:py-24">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div
-            ref={servicesRef}
-            className={`reveal-fade-up ${servicesVisible ? 'visible' : ''}`}
-          >
-            <h2 className="mb-2 text-center font-display text-3xl font-bold text-foreground md:text-4xl">
-              What We Do
-            </h2>
-            <p className="mb-12 text-center text-muted-foreground">
-              Clear, polished marketing support for businesses across Arkansas.
-            </p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service, index) => (
-              <div
-                key={service.title}
-                className={`reveal-fade-up stagger-${index + 1} ${
-                  servicesVisible ? 'visible' : ''
-                }`}
-              >
-                <Card className="group h-full bg-white transition-shadow hover:shadow-lg">
-                  <CardContent className="flex h-full flex-col items-start p-6">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <service.icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
-                      {service.title}
-                    </h3>
-                    <p className="mb-4 flex-1 text-sm text-muted-foreground">
-                      {service.desc}
-                    </p>
-                    <Button
-                      onClick={() => handleNavClick(service.path)}
-                      variant="link"
-                      className="px-0 text-primary"
-                    >
-                      Learn More <IconArrowRight className="ml-1 h-4 w-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-primary/20 bg-accent py-20 sm:py-24">
+      <section className="bg-accent py-20 sm:py-28">
         <div
           ref={spanishRef}
-          className={`container mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8 reveal-fade-up ${
-            spanishVisible ? 'visible' : ''
-          }`}
+          className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 reveal-fade-up ${spanishVisible ? 'visible' : ''}`}
         >
-          <IconLanguage className="mx-auto mb-4 h-10 w-10 text-primary" />
-          <h2 className="mb-4 font-display text-3xl font-bold text-foreground">
-            Servicios en Español
-          </h2>
-          <p className="mx-auto mb-6 max-w-xl text-muted-foreground">
-            Website translation, bilingual social content, and culturally
-            authentic messaging to connect with Arkansas&apos;s growing Hispanic
-            community.
-          </p>
-          <Button
-            onClick={() => handleNavClick('/contact')}
-            className="bg-primary hover:bg-primary/90"
-          >
-            Contáctenos
-          </Button>
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16 items-center">
+            <div className="lg:col-span-5">
+              <div className="overflow-hidden rounded-2xl">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/workspace-detail.jpg`}
+                  alt="Editorial workspace with notebooks and coffee"
+                  width={680}
+                  height={850}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover aspect-[4/5]"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-7">
+              <p className="editorial-label mb-3">Servicios en Español</p>
+              <h2 className="mb-5 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+                Bilingual content for Arkansas communities
+              </h2>
+              <p className="mb-6 text-muted-foreground leading-relaxed max-w-[55ch]">
+                Website translation, bilingual social content, and culturally authentic messaging to connect with Arkansas's growing Hispanic community.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Button
+                  onClick={() => handleNavClick('/contact')}
+                  className="bg-primary hover:bg-primary/90 rounded-full px-7"
+                >
+                  Contáctenos
+                </Button>
+                <Button
+                  onClick={() => handleNavClick('/services')}
+                  variant="outline"
+                  className="rounded-full border-foreground/12 hover:bg-foreground/[0.03]"
+                >
+                  Learn More
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="bg-foreground py-20 text-background sm:py-24">
+      <section className="py-20 sm:py-28">
         <div
           ref={ctaRef}
-          className={`container mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8 reveal-fade-up ${
-            ctaVisible ? 'visible' : ''
-          }`}
+          className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 reveal-fade-up ${ctaVisible ? 'visible' : ''}`}
         >
-          <h2 className="mb-4 font-display text-3xl font-bold md:text-4xl">
-            Ready to grow your business?
-          </h2>
-          <p className="mb-8 text-background/70">
-            Let&apos;s map out what you need and build a plan that fits your goals.
-          </p>
-          <div className="mb-8 flex flex-wrap items-center justify-center gap-6 text-sm text-background/80">
-            <a
-              href="tel:8705770389"
-              className="flex items-center gap-2 transition-colors hover:text-primary"
-            >
-              <IconPhoneCall className="h-4 w-4" /> + 870 577 0389
-            </a>
-            <a
-              href="mailto:jonescopr@gmail.com"
-              className="flex items-center gap-2 transition-colors hover:text-primary"
-            >
-              <IconMail className="h-4 w-4" /> jonescopr@gmail.com
-            </a>
-            <span className="flex items-center gap-2">
-              <IconMapPin className="h-4 w-4" /> Harrison & Fayetteville, AR
-            </span>
-          </div>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button
-              onClick={() => handleNavClick('/contact')}
-              size="lg"
-              className="bg-primary hover:bg-primary/90"
-            >
-              Schedule a Call
-            </Button>
-            <Button
-              onClick={() => handleNavClick('/bundles')}
-              variant="outline"
-              size="lg"
-              className="border-background/50 bg-transparent text-background hover:bg-background/10 hover:text-background"
-            >
-              View Pricing
-            </Button>
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <p className="editorial-label mb-3">Start a Project</p>
+              <h2 className="mb-5 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+                Ready to grow your business?
+              </h2>
+              <p className="mb-8 text-muted-foreground leading-relaxed max-w-[50ch]">
+                Let's map out what you need and build a plan that fits your goals and budget.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Button
+                  onClick={() => handleNavClick('/contact')}
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 rounded-full px-7"
+                >
+                  Schedule a Call
+                </Button>
+                <Button
+                  onClick={() => handleNavClick('/bundles')}
+                  variant="outline"
+                  size="lg"
+                  className="rounded-full border-foreground/12 px-7 hover:bg-foreground/[0.03]"
+                >
+                  View Pricing
+                </Button>
+              </div>
+            </div>
+            <div className="lg:col-span-5 flex items-center">
+              <div className="w-full rounded-xl border border-border bg-accent p-6">
+                <p className="editorial-label mb-4">Direct Contact</p>
+                <div className="space-y-4">
+                  <a
+                    href="tel:8705770389"
+                    className="flex items-center gap-3 text-sm text-foreground hover:text-primary transition-colors"
+                  >
+                    <IconPhone className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                    + 870 577 0389
+                  </a>
+                  <a
+                    href="mailto:jonescopr@gmail.com"
+                    className="flex items-center gap-3 text-sm text-foreground hover:text-primary transition-colors"
+                  >
+                    <IconMail className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                    jonescopr@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section className="bg-muted py-20 sm:py-28">
         <div
           ref={faqRef}
-          className={`container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 reveal-fade-up ${
-            faqVisible ? 'visible' : ''
-          }`}
+          className={`mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 reveal-fade-up ${faqVisible ? 'visible' : ''}`}
         >
-          <h2 className="mb-8 text-center font-display text-3xl font-bold text-foreground">
-            Frequently Asked Questions
-          </h2>
+          <div className="text-center mb-12">
+            <p className="editorial-label mb-3">Questions</p>
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+              Frequently Asked
+            </h2>
+          </div>
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`faq-${index}`}>
-                <AccordionTrigger className="text-left font-display text-base font-semibold">
+                <AccordionTrigger className="text-left font-display text-base font-medium">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-muted-foreground leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { IconPhone, IconMail, IconMapPin } from '@tabler/icons-react';
 import useRouter from '@/hooks/useRouter';
 
 const Footer = () => {
@@ -26,53 +26,55 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-foreground text-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid gap-8 lg:gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <button 
+    <footer className="border-t border-border bg-muted">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+        <div className="grid gap-10 lg:gap-12 md:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <button
               onClick={() => handleNavClick('/')}
-              className="inline-block mb-4"
+              className="inline-flex items-baseline gap-0.5 mb-5"
             >
-              <span className="font-display text-2xl font-bold">
-                Jones<span className="text-primary">&</span>Co. Media
+              <span className="font-display text-xl font-semibold tracking-tight text-foreground">
+                Jones
+              </span>
+              <span className="font-hero text-2xl text-primary leading-[1]">&</span>
+              <span className="font-display text-xl font-light tracking-wide text-foreground/60">
+                Co. Media
               </span>
             </button>
-            <p className="text-background/70 text-sm mb-6 max-w-xs">
-              Big-Agency Quality. Small-Town Service. Professional marketing support for Arkansas businesses.
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xs">
+              Big-agency quality. Small-town service. Professional marketing support for Arkansas businesses.
             </p>
             <div className="space-y-3 text-sm">
               <a
                 href="tel:8705770389"
-                className="flex items-center gap-2 text-background/70 hover:text-primary transition-colors"
+                className="flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors"
               >
-                <Phone className="h-4 w-4" />
+                <IconPhone className="h-4 w-4" strokeWidth={1.5} />
                 + 870 577 0389
               </a>
               <a
                 href="mailto:jonescopr@gmail.com"
-                className="flex items-center gap-2 text-background/70 hover:text-primary transition-colors"
+                className="flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors"
               >
-                <Mail className="h-4 w-4" />
+                <IconMail className="h-4 w-4" strokeWidth={1.5} />
                 jonescopr@gmail.com
               </a>
-              <span className="flex items-center gap-2 text-background/70">
-                <MapPin className="h-4 w-4" />
+              <span className="flex items-center gap-2.5 text-muted-foreground">
+                <IconMapPin className="h-4 w-4" strokeWidth={1.5} />
                 Harrison & Fayetteville, AR
               </span>
             </div>
           </div>
 
-          {/* Services Links */}
-          <div>
-            <h3 className="font-display text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-3">
+          <div className="lg:col-span-2">
+            <p className="editorial-label mb-4">Services</p>
+            <ul className="space-y-2.5">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <button
                     onClick={() => handleNavClick(link.path)}
-                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
                     {link.name}
                   </button>
@@ -81,15 +83,14 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Company Links */}
-          <div>
-            <h3 className="font-display text-lg font-semibold mb-4">Company</h3>
-            <ul className="space-y-3">
+          <div className="lg:col-span-2">
+            <p className="editorial-label mb-4">Company</p>
+            <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <button
                     onClick={() => handleNavClick(link.path)}
-                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
                     {link.name}
                   </button>
@@ -98,28 +99,26 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* CTA */}
-          <div>
-            <h3 className="font-display text-lg font-semibold mb-4">Ready to Grow?</h3>
-            <p className="text-background/70 text-sm mb-4">
-              Let's discuss how we can help your business thrive.
+          <div className="lg:col-span-4">
+            <p className="editorial-label mb-4">Start a Project</p>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-5">
+              Ready to grow your business? Let's discuss how we can help.
             </p>
             <button
               onClick={() => handleNavClick('/contact')}
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium tracking-wide hover:bg-primary/90 transition-colors"
             >
               Get Started
             </button>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-background/10">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-background/50 text-sm">
+        <div className="mt-14 pt-8 border-t border-border/60">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-muted-foreground text-xs tracking-wide">
               {currentYear} Jones & Co. Media. All rights reserved.
             </p>
-            <p className="text-background/50 text-sm">
+            <p className="text-muted-foreground text-xs tracking-wide">
               Serving Arkansas businesses with pride.
             </p>
           </div>

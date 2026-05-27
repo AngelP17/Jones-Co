@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import useRouter from './hooks/useRouter';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -11,30 +11,6 @@ const ThankYou = lazy(() => import('./pages/ThankYou'));
 
 function App() {
   const { currentPath } = useRouter();
-  const [displayPath, setDisplayPath] = useState(currentPath);
-  const [isExiting, setIsExiting] = useState(false);
-  const [isEntering, setIsEntering] = useState(true); // Start visible on initial load
-
-  useEffect(() => {
-    if (currentPath === displayPath) return;
-
-    // Start exit animation
-    setIsExiting(true);
-    setIsEntering(false);
-
-    // After exit completes, switch content
-    const exitTimeout = window.setTimeout(() => {
-      setDisplayPath(currentPath);
-      setIsExiting(false);
-
-      // Trigger enter animation on next frame
-      window.requestAnimationFrame(() => {
-        setIsEntering(true);
-      });
-    }, 180);
-
-    return () => window.clearTimeout(exitTimeout);
-  }, [currentPath, displayPath]);
 
   const renderPage = (path: string) => {
     switch (path) {
@@ -61,23 +37,16 @@ function App() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
-          Loading...
+        <div aria-label="Loading page" className="min-h-[100dvh] bg-background">
+          <div className="mx-auto max-w-7xl px-4 pt-28 sm:px-6 lg:px-8">
+            <div className="h-3 w-24 rounded-full bg-accent" />
+            <div className="mt-5 h-12 max-w-md rounded-xl bg-accent" />
+            <div className="mt-4 h-5 max-w-xl rounded-full bg-accent" />
+          </div>
         </div>
       }
     >
-      <div
-        key={displayPath}
-        className={`transition-opacity duration-300 ease-out ${
-          isExiting
-            ? 'opacity-0'
-            : isEntering
-            ? 'opacity-100'
-            : 'opacity-0'
-        }`}
-      >
-        {renderPage(displayPath)}
-      </div>
+      {renderPage(currentPath)}
     </Suspense>
   );
 }

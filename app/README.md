@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# Jones & Co. Media Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing and student-services website built with React, TypeScript, Vite, Tailwind CSS, and Radix/shadcn UI primitives.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Requirements: a current Node.js/npm environment compatible with Vite 7.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The app uses hash-based client routing, so a local route appears as `http://localhost:5173/#/services`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Commands
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev               # run the Vite development server
+npm run lint              # run ESLint across source and configuration files
+npx tsc -b --pretty false # type-check the TypeScript projects
+npm run build             # build the production files into dist/
+npm run preview           # serve dist/ through Vite preview
 ```
+
+No test runner or formatter command is configured in `package.json`.
+
+## Routes
+
+The custom router in `src/hooks/useRouter.ts` supports:
+
+- `/`
+- `/services`
+- `/bundles`
+- `/student-services`
+- `/about`
+- `/contact`
+- `/thank-you`
+
+Keep these paths stable. The contact page posts to Formspree and constructs a hash-route thank-you return URL.
+
+## Design And Assets
+
+- Brand tokens and global motion behavior live in `src/index.css`.
+- The site intentionally uses one warm light theme, including navigation, call-to-action panels, and footer.
+- Fonts are bundled in `src/assets/fonts/`; no external font stylesheet is needed in production.
+- Editorial image placements are local assets in `public/images/`. They are generated contextual images, not client work or photographs of the owner.
+- The unused `src/components/HeroScene.tsx` is not part of the rendered UI.
+
+## Implementation Boundaries
+
+- Work only in this React application; `../jones-media-website/` is a deprecated static copy.
+- Preserve service pricing/content, visible contact details, the Formspree endpoint, and hidden form fields unless requirements explicitly change.
+- Treat `src/components/ui/` as shadcn-style primitives. Prefer composing these components from pages and shared shell components instead of modifying primitives.
+
+## Manual Review
+
+Before shipping a UI change:
+
+1. Run lint, TypeScript checking, and the production build.
+2. Inspect every route at desktop width and the home/contact flows at mobile width.
+3. Confirm the hero visual, locally hosted fonts, and local images load.
+4. Confirm interactive controls remain usable with keyboard navigation and reduced-motion settings.
+5. Validate live form delivery separately when deployment access and a test recipient are available.

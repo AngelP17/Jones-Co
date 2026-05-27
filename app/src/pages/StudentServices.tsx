@@ -28,7 +28,7 @@ type ServiceOffer = {
 type ServiceGroup = {
   id: string;
   title: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   offers: ServiceOffer[];
 };
 
@@ -89,8 +89,7 @@ const serviceGroups: ServiceGroup[] = [
       {
         name: 'Application Package',
         price: '$200',
-        perfectFor:
-          'Students applying to multiple schools who want comprehensive support',
+        perfectFor: 'Students applying to multiple schools who want comprehensive support',
         whatYouGet: [
           'Complete resume overhaul',
           '2 essay edits (Common App + supplement)',
@@ -171,18 +170,15 @@ const reasons = [
 const processSteps = [
   {
     title: 'Submit Your Materials',
-    detail:
-      'Email me your resume/essay or fill out my quick form with details about what you need.',
+    detail: 'Email me your resume/essay or fill out my quick form with details about what you need.',
   },
   {
     title: "We'll Schedule a Quick Call (Optional)",
-    detail:
-      'For resume overhauls and application packages, I like to chat for 15-20 minutes to understand your goals.',
+    detail: 'For resume overhauls and application packages, I like to chat for 15-20 minutes to understand your goals.',
   },
   {
     title: "I'll Edit & Send Feedback",
-    detail:
-      "You'll get detailed comments, suggestions, and a polished version within the timeline.",
+    detail: "You'll get detailed comments, suggestions, and a polished version within the timeline.",
   },
   {
     title: 'Revisions Included',
@@ -193,7 +189,6 @@ const processSteps = [
 const StudentServices = () => {
   const { navigate } = useRouter();
 
-  // Scroll reveal hooks
   const { ref: servicesRef, isVisible: servicesVisible } = useIntersectionObserver();
   const { ref: bundlesRef, isVisible: bundlesVisible } = useIntersectionObserver();
   const { ref: whyRef, isVisible: whyVisible } = useIntersectionObserver();
@@ -206,45 +201,44 @@ const StudentServices = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-[100dvh] bg-background">
       <Navbar />
 
-      <section className="bg-foreground pb-16 pt-32 text-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/85">
-              Student Services
-            </p>
-            <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">
-              Resume & Application Support for Students
-            </h1>
-            <p className="mb-3 text-lg text-background/85">
-              Get into your dream school or land that internship with
-              professional editing and guidance from someone who just went
-              through it.
-            </p>
-            <p className="mb-8 text-sm font-semibold tracking-wide text-primary">
-              Based in Fayetteville • University of Arkansas student • I know
-              what works
-            </p>
-            <Button
-              onClick={handleGetStarted}
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-              size="lg"
-            >
-              Get Started <IconArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+      <section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16 items-end">
+            <div className="lg:col-span-7">
+              <p className="editorial-label mb-3">Student Services</p>
+              <h1 className="mb-4 font-display text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+                Resume & Application Support for Students
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-[55ch]">
+                Get into your dream school or land that internship with professional editing and guidance from someone who just went through it.
+              </p>
+            </div>
+            <div className="lg:col-span-5">
+              <div className="rounded-xl border border-border bg-accent p-5">
+                <p className="text-sm font-medium text-foreground mb-3">Based in Fayetteville</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  University of Arkansas student. Coca-Cola Scholars Semi-Finalist. Stone Ward alum. I know what works because I have been through it.
+                </p>
+                <Button
+                  onClick={handleGetStarted}
+                  className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6"
+                >
+                  Get Started
+                  <IconArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            ref={servicesRef}
-            className={`reveal-fade-up ${servicesVisible ? 'visible' : ''}`}
-          >
-            <h2 className="mb-10 font-display text-3xl font-bold text-foreground">
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div ref={servicesRef} className={`mb-12 reveal-fade-up ${servicesVisible ? 'visible' : ''}`}>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
               Services Overview
             </h2>
           </div>
@@ -253,15 +247,13 @@ const StudentServices = () => {
             {serviceGroups.map((group, groupIndex) => (
               <div
                 key={group.id}
-                className={`reveal-fade-up stagger-${groupIndex + 1} ${
-                  servicesVisible ? 'visible' : ''
-                }`}
+                className={`reveal-fade-up stagger-${groupIndex + 1} ${servicesVisible ? 'visible' : ''}`}
               >
-                <div className="mb-5 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                    <group.icon className="h-5 w-5 text-primary" />
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/8">
+                    <group.icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
                   </div>
-                  <h3 className="font-display text-2xl font-bold text-foreground">
+                  <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground">
                     {group.title}
                   </h3>
                 </div>
@@ -270,51 +262,48 @@ const StudentServices = () => {
                   {group.offers.map((offer) => (
                     <Card
                       key={offer.name}
-                      className={`relative ${
-                        offer.highlight ? 'border-primary shadow-lg' : 'border-border'
+                      className={`relative flex flex-col ${
+                        offer.highlight ? 'border-primary/40 shadow-sm' : 'border-border'
                       }`}
                     >
-                      {offer.highlight ? (
-                        <Badge className="absolute -top-3 left-6 bg-primary text-primary-foreground">
+                      {offer.highlight && (
+                        <Badge className="absolute -top-3 left-6 bg-primary text-primary-foreground rounded-full px-3 py-0.5 text-xs">
                           {offer.highlight}
                         </Badge>
-                      ) : null}
-                      <CardHeader>
-                        <CardTitle className="font-display text-xl">
+                      )}
+                      <CardHeader className="pb-3">
+                        <CardTitle className="font-display text-lg font-semibold">
                           {offer.name}
                         </CardTitle>
-                        <p className="text-2xl font-bold text-primary">{offer.price}</p>
-                        <p className="text-sm text-muted-foreground">
-                          <span className="font-semibold text-foreground">Perfect for:</span>{' '}
+                        <p className="text-2xl font-semibold text-primary tracking-tight">{offer.price}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          <span className="font-medium text-foreground">Perfect for:</span>{' '}
                           {offer.perfectFor}
                         </p>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className="flex-1 flex flex-col">
                         <p className="mb-3 text-sm font-medium text-foreground">What you get:</p>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2 flex-1">
                           {offer.whatYouGet.map((item, index) => (
-                            <li
-                              key={index}
-                              className="flex items-start gap-2 text-sm text-foreground"
-                            >
-                              <IconChecklist className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                            <li key={index} className="flex items-start gap-2 text-sm text-foreground">
+                              <IconChecklist className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={1.5} />
                               <span>{item}</span>
                             </li>
                           ))}
                         </ul>
 
-                        {offer.bestFor ? (
+                        {offer.bestFor && (
                           <p className="mt-4 text-sm text-muted-foreground">
-                            <span className="font-semibold text-foreground">Best for:</span>{' '}
+                            <span className="font-medium text-foreground">Best for:</span>{' '}
                             {offer.bestFor}
                           </p>
-                        ) : null}
+                        )}
 
-                        {offer.note ? (
-                          <p className="mt-3 text-sm font-medium text-foreground/90">
+                        {offer.note && (
+                          <p className="mt-3 text-sm font-medium text-foreground/80">
                             {offer.note}
                           </p>
-                        ) : null}
+                        )}
                       </CardContent>
                     </Card>
                   ))}
@@ -325,144 +314,131 @@ const StudentServices = () => {
         </div>
       </section>
 
-      <section className="bg-muted py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            ref={bundlesRef}
-            className={`reveal-fade-up ${bundlesVisible ? 'visible' : ''}`}
-          >
-            <h2 className="mb-8 font-display text-3xl font-bold text-foreground">
+      <section className="bg-muted py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div ref={bundlesRef} className={`mb-10 reveal-fade-up ${bundlesVisible ? 'visible' : ''}`}>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
               Popular Bundles
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 max-w-3xl">
             {bundles.map((bundle, index) => (
               <div
                 key={bundle.name}
-                className={`reveal-fade-up stagger-${index + 1} ${
-                  bundlesVisible ? 'visible' : ''
-                }`}
+                className={`reveal-fade-up stagger-${index + 1} ${bundlesVisible ? 'visible' : ''}`}
               >
-                <Card className="border-primary/30 h-full">
-                <CardHeader>
-                  <CardTitle className="font-display text-xl">{bundle.name}</CardTitle>
-                  <p className="text-2xl font-bold text-primary">{bundle.price}</p>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {bundle.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm">
-                        <IconChecklist className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-4 text-sm font-medium text-foreground/90">
-                    {bundle.note}
-                  </p>
-                </CardContent>
-              </Card>
+                <Card className="border-primary/20 h-full">
+                  <CardHeader>
+                    <CardTitle className="font-display text-lg font-semibold">{bundle.name}</CardTitle>
+                    <p className="text-2xl font-semibold text-primary tracking-tight">{bundle.price}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {bundle.features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-2 text-sm">
+                          <IconChecklist className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={1.5} />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-4 text-sm font-medium text-foreground/80">
+                      {bundle.note}
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-8 font-display text-3xl font-bold text-foreground">
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-10 font-display text-3xl font-semibold tracking-tight text-foreground">
             Why Work With Me?
           </h2>
-          <div ref={whyRef} className="grid gap-6 md:grid-cols-2">
+          <div ref={whyRef} className="grid gap-5 md:grid-cols-2">
             {reasons.map((reason, index) => (
               <div
                 key={reason.title}
-                className={`reveal-fade-up stagger-${index + 1} ${
-                  whyVisible ? 'visible' : ''
-                }`}
+                className={`reveal-fade-up stagger-${index + 1} ${whyVisible ? 'visible' : ''}`}
               >
-                <Card className="bg-accent h-full">
-                  <CardContent className="p-6">
-                    <h3 className="mb-2 font-display text-xl font-semibold text-foreground">
-                      {reason.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {reason.body}
-                    </p>
-                  </CardContent>
-                </Card>
+                <div className="rounded-xl border border-border bg-accent p-6 h-full">
+                  <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
+                    {reason.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {reason.body}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-foreground py-16 text-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-8 font-display text-3xl font-bold">How It Works</h2>
-          <div ref={processRef} className="grid gap-5 md:grid-cols-2">
+      <section className="bg-muted py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-10 font-display text-3xl font-semibold tracking-tight">
+            How It Works
+          </h2>
+          <div ref={processRef} className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, index) => (
               <div
                 key={step.title}
-                className={`reveal-fade-up stagger-${index + 1} ${
-                  processVisible ? 'visible' : ''
-                }`}
+                className={`reveal-fade-up stagger-${index + 1} ${processVisible ? 'visible' : ''}`}
               >
-                <Card className="border-white/15 bg-white/5 text-white h-full">
-                  <CardContent className="p-6">
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-primary">
-                      Step {index + 1}
-                    </p>
-                    <h3 className="mb-2 font-display text-xl font-semibold text-white">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-white/75">{step.detail}</p>
-                  </CardContent>
-                </Card>
+                <div className="rounded-xl border border-border bg-background p-6 h-full">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">
+                    Step {index + 1}
+                  </p>
+                  <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.detail}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 sm:py-20">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 text-center sm:px-6 lg:px-8 reveal-fade-up ${
-            ctaVisible ? 'visible' : ''
-          }`}
+          className={`mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8 reveal-fade-up ${ctaVisible ? 'visible' : ''}`}
         >
-          <h2 className="mb-4 font-display text-2xl font-bold text-foreground">
+          <h2 className="mb-4 font-display text-2xl font-semibold tracking-tight text-foreground">
             Ready to apply with confidence?
           </h2>
-          <p className="mx-auto mb-6 max-w-2xl text-muted-foreground">
-            Send your materials and I&apos;ll help you present your story clearly,
-            professionally, and in your own voice.
+          <p className="mx-auto mb-8 max-w-lg text-muted-foreground leading-relaxed">
+            Send your materials and I'll help you present your story clearly, professionally, and in your own voice.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <Button
               onClick={handleGetStarted}
               size="lg"
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary hover:bg-primary/90 rounded-full px-7"
             >
-              Get Started →
+              Get Started
+              <IconArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
             </Button>
             <Button
               onClick={handleGetStarted}
               size="lg"
               variant="outline"
-              className="border-primary/30"
+              className="rounded-full px-7 border-foreground/15"
             >
               Contact Me
             </Button>
           </div>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-2">
-              <IconWriting className="h-4 w-4" /> Essay & resume editing
+              <IconWriting className="h-4 w-4" strokeWidth={1.5} /> Essay & resume editing
             </span>
             <span className="inline-flex items-center gap-2">
-              <IconBrandLinkedin className="h-4 w-4" /> LinkedIn support
+              <IconBrandLinkedin className="h-4 w-4" strokeWidth={1.5} /> LinkedIn support
             </span>
           </div>
         </div>
