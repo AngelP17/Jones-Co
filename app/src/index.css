@@ -1,4 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('./assets/fonts/PlayfairDisplay-Latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  src: url('./assets/fonts/SourceSans3-Latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'Instrument Serif Italic';
@@ -14,54 +28,57 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 25% 18%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 25% 18%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 18%;
-    --primary: 14 68% 62%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 43 59% 55%;
-    --secondary-foreground: 220 25% 18%;
-    --muted: 30 20% 96%;
-    --muted-foreground: 220 10% 45%;
-    --accent: 30 25% 97%;
-    --accent-foreground: 220 25% 18%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 30 15% 88%;
-    --input: 30 15% 88%;
-    --ring: 14 68% 62%;
+    --background: 38 40% 98%;
+    --foreground: 20 22% 14%;
+    --card: 36 33% 96%;
+    --card-foreground: 20 22% 14%;
+    --popover: 38 40% 98%;
+    --popover-foreground: 20 22% 14%;
+    --primary: 16 52% 42%;
+    --primary-foreground: 40 50% 98%;
+    --secondary: 35 28% 89%;
+    --secondary-foreground: 20 22% 14%;
+    --muted: 34 22% 94%;
+    --muted-foreground: 20 10% 46%;
+    --accent: 34 32% 92%;
+    --accent-foreground: 20 22% 14%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 40 50% 98%;
+    --border: 32 18% 87%;
+    --input: 32 18% 87%;
+    --ring: 16 52% 42%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 220 10% 35%;
-    --sidebar-primary: 14 68% 62%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 30 20% 96%;
-    --sidebar-accent-foreground: 220 25% 18%;
-    --sidebar-border: 30 15% 88%;
-    --sidebar-ring: 14 68% 62%;
+    --sidebar-background: 34 22% 94%;
+    --sidebar-foreground: 20 10% 35%;
+    --sidebar-primary: 16 52% 42%;
+    --sidebar-primary-foreground: 40 50% 98%;
+    --sidebar-accent: 34 32% 92%;
+    --sidebar-accent-foreground: 20 22% 14%;
+    --sidebar-border: 32 18% 87%;
+    --sidebar-ring: 16 52% 42%;
+    --surface-elevated: 36 30% 97%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Source Sans 3', system-ui, sans-serif;
+    font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
   }
+
   #root {
     min-height: 100dvh;
     overflow-x: hidden;
   }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
   }
@@ -85,22 +102,19 @@
     scroll-behavior: auto;
   }
 
-  /* Keep animations, but soften them for accessibility */
   .reveal-fade-up,
   .reveal-fade-left,
   .reveal-fade-right {
-    transition-duration: 200ms !important;
-  }
-
-  .reveal-fade-up:not(.visible),
-  .reveal-fade-left:not(.visible),
-  .reveal-fade-right:not(.visible) {
+    opacity: 1 !important;
     transform: none !important;
-    opacity: 0;
+    transition: none !important;
+    transition-delay: 0ms !important;
   }
 
   .hero-intro {
-    animation-duration: 450ms !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }
 
@@ -108,88 +122,118 @@
   .font-display {
     font-family: 'Playfair Display', Georgia, serif;
   }
+
   .font-body {
     font-family: 'Source Sans 3', system-ui, sans-serif;
   }
+
   .font-hero {
     font-family: 'Instrument Serif Italic', 'Playfair Display', Georgia, serif;
     font-style: italic;
     letter-spacing: 0.01em;
   }
 
-  /* Smooth fade-up reveal */
   .reveal-fade-up {
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal-fade-up:not(.visible) {
     opacity: 0;
+    transform: translateY(12px);
   }
 
   .reveal-fade-up.visible {
     opacity: 1;
+    transform: translateY(0);
   }
 
-  /* Smooth fade-left reveal */
   .reveal-fade-left {
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal-fade-left:not(.visible) {
     opacity: 0;
+    transform: translateX(-12px);
   }
 
   .reveal-fade-left.visible {
     opacity: 1;
+    transform: translateX(0);
   }
 
-  /* Smooth fade-right reveal */
   .reveal-fade-right {
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal-fade-right:not(.visible) {
     opacity: 0;
+    transform: translateX(12px);
   }
 
   .reveal-fade-right.visible {
     opacity: 1;
+    transform: translateX(0);
   }
 
-  /* Stagger delays for cascading animations */
-  .stagger-1 { transition-delay: 50ms; }
-  .stagger-2 { transition-delay: 100ms; }
-  .stagger-3 { transition-delay: 150ms; }
-  .stagger-4 { transition-delay: 200ms; }
-  .stagger-5 { transition-delay: 250ms; }
-  .stagger-6 { transition-delay: 300ms; }
+  .stagger-1 { transition-delay: 80ms; }
+  .stagger-2 { transition-delay: 160ms; }
+  .stagger-3 { transition-delay: 240ms; }
+  .stagger-4 { transition-delay: 320ms; }
+  .stagger-5 { transition-delay: 400ms; }
+  .stagger-6 { transition-delay: 480ms; }
 
-  /* Hero intro sequence (slower and clearly visible) */
   @keyframes heroIntro {
     from {
       opacity: 0;
+      transform: translateY(8px);
     }
     to {
       opacity: 1;
+      transform: translateY(0);
     }
   }
 
   .hero-intro {
     opacity: 0;
     animation-name: heroIntro;
-    animation-duration: 850ms;
+    animation-duration: 700ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     animation-fill-mode: forwards;
   }
 
-  .hero-intro-1 { animation-delay: 80ms; }
-  .hero-intro-2 { animation-delay: 240ms; }
-  .hero-intro-3 { animation-delay: 420ms; }
+  .hero-intro-1 { animation-delay: 120ms; }
+  .hero-intro-2 { animation-delay: 280ms; }
+  .hero-intro-3 { animation-delay: 440ms; }
+
+  .editorial-rule {
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background-color: hsl(var(--primary));
+  }
+
+  .editorial-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: hsl(var(--primary));
+    letter-spacing: 0.02em;
+  }
+
+  .editorial-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+  }
+
 }
 
-/* Mobile Touch Feedback - Better UX for touch devices */
 @media (hover: none) and (pointer: coarse) {
-  /* Ensure minimum touch targets */
   button,
   a,
   [role="button"] {
@@ -197,28 +241,23 @@
     min-width: 44px;
   }
 
-  /* Touch feedback on interactive elements */
   .interactive:active {
     background-color: rgba(0, 0, 0, 0.05);
     transform: scale(0.98);
   }
 
-  /* Button touch feedback - enhance what we already have */
   button:active:not(:disabled) {
-    opacity: 0.8;
+    transform: scale(0.98);
   }
 
-  /* Card touch feedback */
   [data-slot="card"]:active {
     transform: scale(0.98) !important;
   }
 
-  /* Link touch feedback */
   a:active {
     opacity: 0.8;
   }
 
-  /* Remove hover effects on touch devices to prevent stuck states */
   button:hover,
   [data-slot="card"]:hover {
     transform: none;

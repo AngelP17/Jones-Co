@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Check, Star, Zap, Crown } from 'lucide-react';
+import { IconCheck, IconStar, IconBolt, IconCrown } from '@tabler/icons-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import useRouter from '@/hooks/useRouter';
@@ -10,7 +10,7 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 const bundles = [
   {
     name: 'Local Business Starter',
-    icon: Star,
+    icon: IconStar,
     price: '$950',
     monthly: '$75/mo',
     description: 'Everything a local business needs to establish a professional online presence.',
@@ -24,11 +24,10 @@ const bundles = [
       'Business card design',
       'Monthly maintenance included',
     ],
-    color: 'border-secondary',
   },
   {
     name: 'Digital Presence Package',
-    icon: Zap,
+    icon: IconBolt,
     price: '$1,400',
     monthly: '$125/mo',
     description: 'Comprehensive digital marketing to grow your audience and engagement.',
@@ -45,11 +44,10 @@ const bundles = [
       'Brand style guide',
     ],
     popular: true,
-    color: 'border-primary',
   },
   {
     name: 'Full-Service Growth',
-    icon: Crown,
+    icon: IconCrown,
     price: '$2,000',
     monthly: '$400/mo',
     description: 'Complete marketing solution for businesses serious about growth.',
@@ -66,14 +64,22 @@ const bundles = [
       'Priority support',
       'All design materials included',
     ],
-    color: 'border-foreground',
   },
+];
+
+const comparisonFeatures = [
+  { label: 'Website Pages', starter: '5', digital: '10', full: 'Unlimited' },
+  { label: 'Social Platforms', starter: '2', digital: '3', full: '4+' },
+  { label: 'Monthly Posts', starter: 'Setup only', digital: '12', full: '20' },
+  { label: 'SEO', starter: 'Basic', digital: 'Advanced', full: 'Comprehensive' },
+  { label: 'Email Marketing', starter: false, digital: true, full: true },
+  { label: 'PR Services', starter: false, digital: false, full: true },
+  { label: 'Support', starter: 'Email', digital: 'Email + Phone', full: 'Priority' },
 ];
 
 const Bundles = () => {
   const { navigate } = useRouter();
 
-  // Scroll reveal hooks
   const { ref: bundlesRef, isVisible: bundlesVisible } = useIntersectionObserver();
   const { ref: comparisonRef, isVisible: comparisonVisible } = useIntersectionObserver();
   const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
@@ -84,241 +90,185 @@ const Bundles = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-[100dvh] bg-background">
       <Navbar />
 
-      {/* Hero */}
-      <section className="bg-foreground pt-32 pb-16 text-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="mb-4 font-display text-4xl font-bold md:text-5xl">
-              Service <span className="text-primary">Bundles</span>
+      <section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="editorial-label mb-3">Packages</p>
+            <h1 className="mb-4 font-display text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+              Service Bundles
             </h1>
-            <p className="text-lg text-background/80">
-              Save money and get everything you need with our curated service
-              packages. Designed for Arkansas businesses at every stage.
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Save money and get everything you need with our curated service packages. Designed for Arkansas businesses at every stage.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Bundles */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={bundlesRef} className="grid gap-8 lg:grid-cols-3">
+      <section className="pb-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div ref={bundlesRef} className="grid gap-6 lg:grid-cols-3">
             {bundles.map((bundle, index) => (
               <div
                 key={bundle.name}
-                className={`reveal-fade-up stagger-${index + 1} ${
-                  bundlesVisible ? 'visible' : ''
-                }`}
+                className={`reveal-fade-up stagger-${index + 1} ${bundlesVisible ? 'visible' : ''}`}
               >
                 <Card
                   className={`relative flex flex-col h-full ${
                     bundle.popular
-                      ? 'border-primary shadow-xl scale-105'
-                      : bundle.color
+                      ? 'border-primary/40 shadow-sm bg-background ring-1 ring-primary/10'
+                      : 'border-border bg-background'
                   }`}
                 >
-                {bundle.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1">
-                    Most Popular
-                  </Badge>
-                )}
+                  {bundle.popular && (
+                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground rounded-full px-3 py-0.5 text-xs">
+                      Most Popular
+                    </Badge>
+                  )}
 
-                <CardHeader className="text-center pb-4">
-                  <div
-                    className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full ${
-                      bundle.popular ? 'bg-primary/10' : 'bg-muted'
-                    }`}
-                  >
-                    <bundle.icon
-                      className={`h-7 w-7 ${
-                        bundle.popular ? 'text-primary' : 'text-foreground'
+                  <CardHeader className="text-center pb-4">
+                    <div
+                      className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${
+                        bundle.popular ? 'bg-primary/10' : 'bg-muted'
                       }`}
-                    />
-                  </div>
-                  <CardTitle className="font-display text-2xl">
-                    {bundle.name}
-                  </CardTitle>
-                  <div className="mt-2">
-                    <span className="text-3xl font-bold text-primary">
-                      {bundle.price}
-                    </span>
-                    <span className="text-muted-foreground"> + </span>
-                    <span className="text-lg font-semibold">
-                      {bundle.monthly}
-                    </span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    {bundle.description}
-                  </p>
-                </CardHeader>
-
-                <CardContent className="flex-1 flex flex-col">
-                  <div className="mb-4">
-                    <p className="text-sm font-medium text-foreground mb-2">
-                      Best for:
+                    >
+                      <bundle.icon
+                        className={`h-5 w-5 ${bundle.popular ? 'text-primary' : 'text-foreground/70'}`}
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                    <CardTitle className="font-display text-xl font-semibold">
+                      {bundle.name}
+                    </CardTitle>
+                    <div className="mt-3">
+                      <span className="text-3xl font-semibold text-primary tracking-tight">
+                        {bundle.price}
+                      </span>
+                      <span className="text-muted-foreground mx-1">+</span>
+                      <span className="text-base font-medium text-foreground/70">
+                        {bundle.monthly}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                      {bundle.description}
                     </p>
-                    <p className="text-sm text-muted-foreground">
-                      {bundle.bestFor}
-                    </p>
-                  </div>
+                  </CardHeader>
 
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {bundle.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm">
-                        <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <CardContent className="flex-1 flex flex-col">
+                    <p className="text-sm font-medium text-foreground mb-1">Best for:</p>
+                    <p className="text-sm text-muted-foreground mb-5">{bundle.bestFor}</p>
 
-                  <Button
-                    onClick={() => handleNavClick('/contact')}
-                    className={`w-full ${
-                      bundle.popular
-                        ? 'bg-primary hover:bg-primary/90'
-                        : 'bg-foreground hover:bg-foreground/90'
-                    }`}
-                  >
-                    Get Started
-                  </Button>
-                </CardContent>
-              </Card>
+                    <ul className="space-y-2.5 mb-8 flex-1">
+                      {bundle.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm">
+                          <IconCheck className="h-4 w-4 text-primary shrink-0 mt-0.5" strokeWidth={1.5} />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button
+                      onClick={() => handleNavClick('/contact')}
+                      className={`w-full rounded-full ${
+                        bundle.popular
+                          ? 'bg-primary hover:bg-primary/90'
+                          : 'bg-foreground hover:bg-foreground/90 text-background'
+                      }`}
+                    >
+                      Get Started
+                    </Button>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Comparison */}
-      <section className="bg-muted py-16">
+      <section className="bg-muted py-16 sm:py-20">
         <div
           ref={comparisonRef}
-          className={`container mx-auto px-4 sm:px-6 lg:px-8 reveal-fade-up ${
-            comparisonVisible ? 'visible' : ''
-          }`}
+          className={`mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 reveal-fade-up ${comparisonVisible ? 'visible' : ''}`}
         >
-          <h2 className="font-display text-2xl font-bold text-center mb-8">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-center mb-10">
             Bundle Comparison
           </h2>
 
-          <div className="overflow-x-auto">
-            <table className="w-full bg-white rounded-lg shadow-sm">
+          <div className="overflow-x-auto rounded-xl border border-border bg-background">
+            <table className="w-full">
               <thead>
-                <tr className="border-b">
-                  <th className="text-left p-4 font-display">Feature</th>
-                  <th className="text-center p-4 font-display">Starter</th>
-                  <th className="text-center p-4 font-display text-primary">
-                    Digital Presence
-                  </th>
-                  <th className="text-center p-4 font-display">Full-Service</th>
+                <tr className="border-b border-border">
+                  <th className="text-left p-4 font-display text-sm font-semibold text-foreground">Feature</th>
+                  <th className="text-center p-4 font-display text-sm font-semibold text-foreground">Starter</th>
+                  <th className="text-center p-4 font-display text-sm font-semibold text-primary">Digital Presence</th>
+                  <th className="text-center p-4 font-display text-sm font-semibold text-foreground">Full-Service</th>
                 </tr>
               </thead>
               <tbody className="text-sm">
-                <tr className="border-b">
-                  <td className="p-4">Website Pages</td>
-                  <td className="text-center p-4">5</td>
-                  <td className="text-center p-4 font-medium text-primary">
-                    10
-                  </td>
-                  <td className="text-center p-4">Unlimited</td>
-                </tr>
-                <tr className="border-b">
-                  <td className="p-4">Social Platforms</td>
-                  <td className="text-center p-4">2</td>
-                  <td className="text-center p-4 font-medium text-primary">
-                    3
-                  </td>
-                  <td className="text-center p-4">4+</td>
-                </tr>
-                <tr className="border-b">
-                  <td className="p-4">Monthly Posts</td>
-                  <td className="text-center p-4">Setup only</td>
-                  <td className="text-center p-4 font-medium text-primary">
-                    12
-                  </td>
-                  <td className="text-center p-4">20</td>
-                </tr>
-                <tr className="border-b">
-                  <td className="p-4">SEO</td>
-                  <td className="text-center p-4">Basic</td>
-                  <td className="text-center p-4 font-medium text-primary">
-                    Advanced
-                  </td>
-                  <td className="text-center p-4">Comprehensive</td>
-                </tr>
-                <tr className="border-b">
-                  <td className="p-4">Email Marketing</td>
-                  <td className="text-center p-4">
-                    <span className="text-muted-foreground">—</span>
-                  </td>
-                  <td className="text-center p-4 font-medium text-primary">
-                    ✓
-                  </td>
-                  <td className="text-center p-4">✓</td>
-                </tr>
-                <tr className="border-b">
-                  <td className="p-4">PR Services</td>
-                  <td className="text-center p-4">
-                    <span className="text-muted-foreground">—</span>
-                  </td>
-                  <td className="text-center p-4">
-                    <span className="text-muted-foreground">—</span>
-                  </td>
-                  <td className="text-center p-4">✓</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Support</td>
-                  <td className="text-center p-4">Email</td>
-                  <td className="text-center p-4 font-medium text-primary">
-                    Email + Phone
-                  </td>
-                  <td className="text-center p-4">Priority</td>
-                </tr>
+                {comparisonFeatures.map((row, i) => (
+                  <tr key={row.label} className={i < comparisonFeatures.length - 1 ? 'border-b border-border/60' : ''}>
+                    <td className="p-4 text-foreground/80">{row.label}</td>
+                    <td className="text-center p-4 text-muted-foreground">
+                      {typeof row.starter === 'boolean'
+                        ? row.starter
+                          ? <IconCheck className="h-4 w-4 mx-auto text-primary" strokeWidth={1.5} />
+                          : <span className="text-foreground/25">-</span>
+                        : row.starter}
+                    </td>
+                    <td className="text-center p-4 font-medium text-primary/90">
+                      {typeof row.digital === 'boolean'
+                        ? row.digital
+                          ? <IconCheck className="h-4 w-4 mx-auto text-primary" strokeWidth={1.5} />
+                          : <span className="text-foreground/25">-</span>
+                        : row.digital}
+                    </td>
+                    <td className="text-center p-4 text-muted-foreground">
+                      {typeof row.full === 'boolean'
+                        ? row.full
+                          ? <IconCheck className="h-4 w-4 mx-auto text-primary" strokeWidth={1.5} />
+                          : <span className="text-foreground/25">-</span>
+                        : row.full}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         </div>
       </section>
 
-      {/* Custom Package CTA */}
-      <section className="py-16">
+      <section className="py-16 sm:py-20">
         <div
           ref={ctaRef}
-          className={`container mx-auto px-4 sm:px-6 lg:px-8 reveal-fade-up ${
-            ctaVisible ? 'visible' : ''
-          }`}
+          className={`mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 reveal-fade-up ${ctaVisible ? 'visible' : ''}`}
         >
-          <Card className="bg-foreground text-background">
-            <CardContent className="p-8 md:p-12 text-center">
-              <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
-                Need a Custom Package?
-              </h2>
-              <p className="text-background/70 max-w-xl mx-auto mb-6">
-                Every business is unique. Let's create a custom solution that
-                fits your specific needs and budget.
-              </p>
-              <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
-                <Button
-                  onClick={() => handleNavClick('/contact')}
-                  size="lg"
-                  className="w-full bg-primary hover:bg-primary/90 sm:w-auto"
-                >
-                  Request Custom Quote
-                </Button>
-                <Button
-                  onClick={() => handleNavClick('/services')}
-                  variant="outline"
-                  size="lg"
-                  className="w-full border-background/30 bg-transparent text-background hover:bg-background/10 hover:text-background sm:w-auto"
-                >
-                  View Individual Services
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="rounded-2xl border border-border bg-accent p-8 text-center md:p-12">
+            <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight mb-4">
+              Need a Custom Package?
+            </h2>
+            <p className="text-muted-foreground max-w-lg mx-auto mb-8 leading-relaxed">
+              Every business is unique. Let's create a custom solution that fits your specific needs and budget.
+            </p>
+            <div className="flex w-full flex-col justify-center gap-3 sm:flex-row">
+              <Button
+                onClick={() => handleNavClick('/contact')}
+                size="lg"
+                className="w-full bg-primary hover:bg-primary/90 rounded-full px-7 sm:w-auto"
+              >
+                Request Custom Quote
+              </Button>
+              <Button
+                onClick={() => handleNavClick('/services')}
+                variant="outline"
+                size="lg"
+                className="w-full rounded-full border-foreground/15 bg-transparent px-7 hover:bg-background sm:w-auto"
+              >
+                View Individual Services
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
