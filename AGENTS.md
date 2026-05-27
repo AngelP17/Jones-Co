@@ -1,4 +1,4 @@
-# Jones & Co. Media - Agent Guidance
+# Jones & Co. - Agent Guidance
 
 ## Start Here
 
@@ -20,6 +20,8 @@ npm run preview           # serve the built bundle locally
 ```
 
 There is no repository script for tests or formatting in `app/package.json`. Do not claim either was run unless a command is added and verified intentionally.
+
+Deployment uses `wrangler.toml` at the repository root. Cloudflare's `npx wrangler deploy` command runs its configured `app/` install and production build before publishing `app/dist/`.
 
 ## Structure And Routing
 

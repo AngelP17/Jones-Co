@@ -39,7 +39,7 @@ const Footer = () => {
               </span>
               <span className="font-hero text-2xl text-primary leading-[1]">&</span>
               <span className="font-display text-xl font-light tracking-wide text-foreground/60">
-                Co. Media
+                Co.
               </span>
             </button>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xs">
@@ -116,7 +116,7 @@ const Footer = () => {
         <div className="mt-14 pt-8 border-t border-border/60">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
             <p className="text-muted-foreground text-xs tracking-wide">
-              {currentYear} Jones & Co. Media. All rights reserved.
+              {currentYear} Jones & Co. All rights reserved.
             </p>
             <p className="text-muted-foreground text-xs tracking-wide">
               Serving Arkansas businesses with pride.

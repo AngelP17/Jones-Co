@@ -97,7 +97,7 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed max-w-[60ch]">
                 <p>
-                  I started Jones & Co. Media because I believe every Arkansas business deserves professional marketing, not just the ones with big budgets.
+                  I started Jones & Co. because I believe every Arkansas business deserves professional marketing, not just the ones with big budgets.
                 </p>
                 <p>
                   Growing up in Arkansas, I saw how hard local business owners work. I also saw how often they struggle to compete online against bigger companies with dedicated marketing teams. That didn't seem fair.
@@ -176,7 +176,7 @@ const About = () => {
               Our Values
             </h2>
             <p className="text-muted-foreground max-w-md mx-auto">
-              The principles that guide everything we do at Jones & Co. Media.
+              The principles that guide everything we do at Jones & Co.
             </p>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto">
